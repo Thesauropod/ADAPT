@@ -13,7 +13,7 @@ public class BellumAI : MonoBehaviour
     
 
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
-    private bool canCharge = false, chargeTriggered = false, jumpTriggered = false;
+    public bool canCharge = false, chargeTriggered = false, jumpTriggered = false, patrolling = false;
     public bool playerDetected = false, activeDamage = true;
     public Transform target;
     private Vector3 patrolTarget;
@@ -21,7 +21,7 @@ public class BellumAI : MonoBehaviour
     void Start()
     {
         State CurrentState = State.Patrol;
-        StartCoroutine(SetPatrolTarget());
+        StartCoroutine(Patrol());
 
         anim = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
@@ -34,24 +34,33 @@ public class BellumAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
+                if (!patrolling)
+                {
+                    StartCoroutine(Patrol());
+                }
                 if (playerDetected) {
                     currentState = State.Attack;
+                    
+                    
                 }
 
                 //Move back and forth
                 break;
             case State.Attack:
+                if (!playerDetected && health > 0)
+                {
+                    currentState = State.Patrol;
+                }
                 if (!chargeTriggered)
                 {
                     StartCoroutine(DelayCharge());
                 }
-                if (!playerDetected && health > 0) {
-                    currentState = State.Patrol;
-                }
+               
 
                 //Play attack animation, spawn hitbox
                 break;
             case State.Dead:
+                patrolling = false;
                 //play animation
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
@@ -67,11 +76,6 @@ public class BellumAI : MonoBehaviour
         {
             case State.Patrol:
                
-               rb2D.AddForce(GetDirectionToTarget(patrolTarget)*speed*Time.deltaTime);
-
-                if (rb2D.position == (Vector2)patrolTarget) {
-                    rb2D.velocity = Vector2.zero;
-                }
                break;
 
             case State.Attack:
@@ -94,9 +98,9 @@ public class BellumAI : MonoBehaviour
         }
     }
 
-    public void HitTarget(float damage, Vector2 direction)
+    public void HitTarget(float damage, Vector2 direction, float knockbackFactor)
     {
-        rb2D.AddForce(direction.normalized * damage, ForceMode2D.Impulse);
+        rb2D.AddForce((direction.normalized *  knockbackFactor), ForceMode2D.Impulse);
         health -= damage;
 
         if (health <= 0)
@@ -111,12 +115,12 @@ public class BellumAI : MonoBehaviour
     }
 
     private void FlipSprite() {
-        if (rb2D.velocity.x > 0.5f)
+        if (rb2D.velocity.x > 0f)
         {
             vision.transform.localScale = new Vector3 (-1,1,1);
             graphics.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (rb2D.velocity.x < 0.5f)
+        else if (rb2D.velocity.x < 0f)
         {
             vision.gameObject.transform.localScale = new Vector3(1, 1, 1);
             graphics.transform.localScale = new Vector3(1, 1, 1);
@@ -128,20 +132,22 @@ public class BellumAI : MonoBehaviour
     }
     private Vector2 GetDirectionToTarget(Vector3 tempTarget)
     {
-        
-            if (tempTarget.x - rb2D.position.x < 0)
-            {
-                return Vector2.left;
-            }
-            else
-            {
-                return Vector2.right;
-            }
+
+        if (tempTarget.x - rb2D.position.x < 0)
+        {
+            return Vector2.left;
+        }
+        else if (tempTarget.x - rb2D.position.x > 0)
+        {
+            return Vector2.right;
+        }
+        else {
+            return Vector2.zero;
+        }
         
     }
 
     public void RecieveVisual(bool result) {
-        Debug.Log(result);
         playerDetected = result;
     }
 
@@ -168,11 +174,19 @@ public class BellumAI : MonoBehaviour
 
     }
 
-    IEnumerator SetPatrolTarget() {
-        yield return new WaitForSeconds(2f);
-        patrolTarget = new Vector3(Random.Range(this.transform.position.x - patrolRange, this.transform.position.x + patrolRange), this.transform.position.y, this.transform.position.z);
-        Debug.Log(patrolTarget);
-        StartCoroutine(SetPatrolTarget());
+    IEnumerator Patrol()
+    {
+       
+        patrolling = true;
+        yield return new WaitForSeconds(5f);
+        if (currentState == State.Patrol)
+        {
+            Debug.Log("Patrolled once");
+            patrolTarget = new Vector3(Random.Range(this.transform.position.x - patrolRange, this.transform.position.x + patrolRange), this.transform.position.y, this.transform.position.z);
+            Vector2 force = GetDirectionToTarget(patrolTarget) * speed * Time.deltaTime;
+            rb2D.AddForce(force, ForceMode2D.Impulse);
+            patrolling = false;
+        }
     }
 
     IEnumerator KillUnit()

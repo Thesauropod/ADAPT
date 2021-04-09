@@ -5,13 +5,12 @@ using UnityEngine;
 public class Vision : MonoBehaviour
 {
 
-    float timer;
+    public float timer;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("hello?");
             timer = 0;
             SendMessageUpwards("RecieveVisual", true);
 
@@ -22,12 +21,14 @@ public class Vision : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            timer += Time.deltaTime;
-            if (timer >= .1f)
-            {
-                timer = 0;
-                SendMessageUpwards("RecieveVisual", false);
-            }
+            StartCoroutine(LoseTarget());
         }
     }
+
+    IEnumerator LoseTarget() {
+        yield return new WaitForSeconds(2f);
+        SendMessageUpwards("RecieveVisual", false);
+    }
+
+    
 }
