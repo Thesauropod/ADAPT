@@ -15,7 +15,7 @@ public class ArmatusAI : MonoBehaviour
     public int index = 0;
     private Vector3 patrolTarget, startLocation;
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
-    private bool attacking, patrolling;
+    private bool attacking, patrolling, playerDetected;
     public bool activeDamage = true;
     public Transform target;
 
@@ -29,7 +29,7 @@ public class ArmatusAI : MonoBehaviour
         anim = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
-
+        anim.SetBool("isGuarding", true);
         startLocation = rb2D.position;
 
     }
@@ -45,14 +45,31 @@ public class ArmatusAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
-                if (waypoints.Length > 0)
+                if (waypoints.Length > 0 && !playerDetected)
                 {
+                    anim.SetBool("isGuarding", false);
+                    anim.SetBool("isWalking", true);
                     targetDirection = waypoints[index].transform.position - transform.position;
                     rb2D.AddForce(targetDirection.normalized * speed * Time.deltaTime);
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg));
                 }
+                else if (playerDetected)
+                {
+                    anim.SetBool("isWalking", false);
+                    anim.SetBool("isGuarding", true);
+                    
+                    rb2D.velocity = Vector2.zero;
+
+                }
+                else {
+                    anim.SetBool("isWalking", false);
+                    anim.SetBool("isGuarding", false);
+                }
                 break;
             case State.Dead:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isGuarding", false);
+                anim.SetBool("isDead", true);
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
                 break;
@@ -62,7 +79,7 @@ public class ArmatusAI : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided?");
+
         if (other.gameObject == waypoints[index])
         {
             index = (index + 1) % waypoints.Length;
@@ -123,12 +140,13 @@ public class ArmatusAI : MonoBehaviour
         }
 
     }
-    private Vector2 GetDirectionToTarget(Vector3 tempTarget)
+ 
+    public void RecieveVisual(bool result)
     {
-        Vector2 temp = (Vector2)tempTarget - rb2D.position;
-        return temp.normalized;
-
+        playerDetected = result;
     }
+
+   
 
  /*   IEnumerator Patrol()
     {

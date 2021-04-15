@@ -9,9 +9,9 @@ public class BellumAI : MonoBehaviour
 
     Rigidbody2D rb2D;
     Animator anim;
-    public GameObject graphics, vision;
-    
+    public GameObject graphics;
 
+    float timer;
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
     public bool canCharge = false, chargeTriggered = false, jumpTriggered = false, patrolling = false;
     public bool playerDetected = false, activeDamage = true;
@@ -34,6 +34,7 @@ public class BellumAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
+                anim.SetBool("isAttacking", false);
                 if (!patrolling)
                 {
                     StartCoroutine(Patrol());
@@ -47,10 +48,14 @@ public class BellumAI : MonoBehaviour
                 //Move back and forth
                 break;
             case State.Attack:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isAttacking", true);
                 if (!playerDetected && health > 0)
                 {
                     currentState = State.Patrol;
+                    chargeTriggered = false;
                 }
+                timer += Time.deltaTime;
                 if (!chargeTriggered)
                 {
                     StartCoroutine(DelayCharge());
@@ -62,6 +67,9 @@ public class BellumAI : MonoBehaviour
             case State.Dead:
                 patrolling = false;
                 //play animation
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isAttacking", false);
+                anim.SetBool("isDead", true);
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
                 break;
@@ -75,15 +83,22 @@ public class BellumAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
-               
-               break;
+                if (rb2D.velocity.x != 0f)
+                {
+                    anim.SetBool("isWalking", true);
+                }
+                else
+                {
+                    anim.SetBool("isWalking", false);
+                }
+                break;
 
             case State.Attack:
                 if (canCharge)
                 {
                     StartCoroutine(EndChargeDelay());
                     Vector2 force = GetDirectionToTarget(target.position) * (speed * 2) * Time.deltaTime;
-                    if (rb2D.velocity.x <= 0.05f && !jumpTriggered)
+                    if (rb2D.velocity.x <= 0.05f || rb2D.velocity.x >= -0.05f && !jumpTriggered)
                     {
                         StartCoroutine(AddJumpForce());
 
@@ -117,12 +132,12 @@ public class BellumAI : MonoBehaviour
     private void FlipSprite() {
         if (rb2D.velocity.x > 0f)
         {
-            vision.transform.localScale = new Vector3 (-1,1,1);
+           
             graphics.transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (rb2D.velocity.x < 0f)
         {
-            vision.gameObject.transform.localScale = new Vector3(1, 1, 1);
+         
             graphics.transform.localScale = new Vector3(1, 1, 1);
 
         }
@@ -161,8 +176,8 @@ public class BellumAI : MonoBehaviour
 
     IEnumerator EndChargeDelay()
     {
-        yield return new WaitForSeconds(2f);
         canCharge = false;
+        yield return new WaitForSeconds(2f);
         StartCoroutine(DelayCharge());
     }
 

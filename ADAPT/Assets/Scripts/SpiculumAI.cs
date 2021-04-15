@@ -9,7 +9,7 @@ public class SpiculumAI : MonoBehaviour
 
     Rigidbody2D rb2D;
     Animator anim;
-    public GameObject graphics, vision;
+    public GameObject graphics;
 
 
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
@@ -34,6 +34,10 @@ public class SpiculumAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
+                anim.SetBool("isAttacking", false);
+
+
+
                 if (playerDetected)
                 {
                     currentState = State.Attack;
@@ -42,6 +46,8 @@ public class SpiculumAI : MonoBehaviour
                 //Move back and forth
                 break;
             case State.Attack:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isAttacking", true);
                 if (!playerDetected && health > 0)
                 {
                     currentState = State.Patrol;
@@ -51,6 +57,9 @@ public class SpiculumAI : MonoBehaviour
                 //Play attack animation, spawn hitbox
                 break;
             case State.Dead:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isAttacking", false);
+                anim.SetBool("isDead", true);
                 //play animation
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
@@ -65,7 +74,14 @@ public class SpiculumAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
-
+                if (rb2D.velocity.x != 0f)
+                {
+                    anim.SetBool("isWalking", true);
+                }
+                else
+                {
+                    anim.SetBool("isWalking", false);
+                }
                 /*rb2D.AddForce(GetDirectionToTarget(patrolTarget) * speed * Time.deltaTime);
 
                 if (rb2D.position == (Vector2)patrolTarget)
@@ -109,13 +125,13 @@ public class SpiculumAI : MonoBehaviour
         {
             if (rb2D.velocity.x > 0f)
             {
-                vision.transform.localScale = new Vector3(-1f, 1f, 1f);
-                graphics.transform.localScale = new Vector3(-.1f, .1f, .1f);
+
+                graphics.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
             else if (rb2D.velocity.x < 0f)
             {
-                vision.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                graphics.transform.localScale = new Vector3(.1f, .1f, .1f);
+
+                graphics.transform.localScale = new Vector3(1f, 1f, 1f);
 
             }
             else
@@ -127,14 +143,12 @@ public class SpiculumAI : MonoBehaviour
         {
             if (target.position.x - rb2D.position.x < 0)
             {
-                vision.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                graphics.transform.localScale = new Vector3(.1f, .1f, .1f);
+                graphics.transform.localScale = new Vector3(1f, 1f, 1f);
 
             }
             else if (target.position.x - rb2D.position.x > 0)
             {
-                vision.transform.localScale = new Vector3(-1f, 1f, 1f);
-                graphics.transform.localScale = new Vector3(-.1f, .1f, .1f);
+                graphics.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
             else
             {
@@ -168,7 +182,7 @@ public class SpiculumAI : MonoBehaviour
     IEnumerator Attack()
     {
         attacking = true;
-        yield return new WaitForSeconds(Random.Range(3,5));
+        yield return new WaitForSeconds(Random.Range(3, 5));
         if (currentState == State.Attack)
         {
             Vector2 force = GetDirectionToTarget(target.position) * speed;

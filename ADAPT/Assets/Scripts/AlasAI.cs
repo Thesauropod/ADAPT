@@ -9,7 +9,7 @@ public class AlasAI : MonoBehaviour
 
     Rigidbody2D rb2D;
     Animator anim;
-    public GameObject graphics, vision;
+    public GameObject graphics;
 
     private Vector3 patrolTarget, startLocation;
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
@@ -36,6 +36,7 @@ public class AlasAI : MonoBehaviour
         switch (currentState)
         {
             case State.Patrol:
+                anim.SetBool("isAttacking", false);
                 if (playerDetected)
                 {
                     currentState = State.Attack;
@@ -44,6 +45,7 @@ public class AlasAI : MonoBehaviour
                 //Move back and forth
                 break;
             case State.Attack:
+                anim.SetBool("isAttacking", true);
                 if (!playerDetected && health > 0)
                 {
                     currentState = State.Patrol;
@@ -53,6 +55,8 @@ public class AlasAI : MonoBehaviour
                 //Play attack animation, spawn hitbox
                 break;
             case State.Dead:
+                anim.SetBool("isAttacking", false);
+                anim.SetBool("isDead", true);
                 //play animation
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
@@ -112,12 +116,12 @@ public class AlasAI : MonoBehaviour
         {
             if (rb2D.velocity.x > 0f)
             {
-                vision.transform.localScale = new Vector3(-1f, 1f, 1f);
+               
                 graphics.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
             else if (rb2D.velocity.x < 0f)
             {
-                vision.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+              
                 graphics.transform.localScale = new Vector3(1f, 1f, 1f);
 
             }
@@ -130,13 +134,13 @@ public class AlasAI : MonoBehaviour
         {
             if (target.position.x - rb2D.position.x < 0)
             {
-                vision.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+               
                 graphics.transform.localScale = new Vector3(1f, 1f, 1f);
 
             }
             else if (target.position.x - rb2D.position.x > 0)
             {
-                vision.transform.localScale = new Vector3(-1f, 1f, 1f);
+               
                 graphics.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
             else
