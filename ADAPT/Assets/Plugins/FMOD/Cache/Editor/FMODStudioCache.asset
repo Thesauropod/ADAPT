@@ -38,11 +38,11 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.bank"
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637543160381239988
+  lastModified: 637543593229022141
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1186144
+    Value: 1754784
   Exists: 1
 --- !u!114 &-7540578399399636183
 MonoBehaviour:
@@ -210,13 +210,38 @@ MonoBehaviour:
   - {fileID: -5152577994290762429}
   - {fileID: 4065407329659133151}
   - {fileID: -230757391262779105}
+  - {fileID: 8836476890611045334}
+  - {fileID: 2230812792992064831}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7674830951687462440}
   StringsBanks:
   - {fileID: 5180859049207425450}
-  stringsBankWriteTime: 637543160381259682
+  stringsBankWriteTime: 637543593229062013
   cacheVersion: 6
+--- !u!114 &2230812792992064831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/theme-320 kbps
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/theme-320 kbps
+  guid: 2bc9437c752d4542bb98f2fafcf9ecb4
+  Banks:
+  - {fileID: -7674830951687462440}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 45191
 --- !u!114 &3620755819587347946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,11 +326,11 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.strings.bank"
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637543160381259682
+  lastModified: 637543593229062013
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1272
+    Value: 1376
   Exists: 1
 --- !u!114 &7843088608895812891
 MonoBehaviour:
@@ -345,9 +370,32 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Environment.bank"
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 637543160381518982
+  lastModified: 637543593218205703
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1098944
+    Value: 1222560
   Exists: 1
+--- !u!114 &8836476890611045334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Laser
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Laser
+  guid: 1f22ea2551d40c4ba3f5fd344aba95e3
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11000
