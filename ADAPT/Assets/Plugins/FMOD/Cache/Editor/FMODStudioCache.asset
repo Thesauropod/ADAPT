@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8659889493068345684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/sliding door
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/sliding door
+  guid: d2cbd78b25f28943bd3777e0b9b73e4d
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3736
 --- !u!114 &-7674830951687462440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,12 +38,104 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.bank"
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637540306636013155
+  lastModified: 637543147485175703
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1000
+    Value: 1186144
   Exists: 1
+--- !u!114 &-7540578399399636183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Main BGM
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Main BGM
+  guid: 34f8cf951a8a954f932413e2756d7a87
+  Banks:
+  - {fileID: -7674830951687462440}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 74500
+--- !u!114 &-6920531374575372339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Warning Alarm
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Warning Alarm
+  guid: 3c30078066878e458a8bf72a4fd61d3f
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12148
+--- !u!114 &-5444376745824684302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainCharacter/Roar
+  m_EditorClassIdentifier: 
+  Path: event:/MainCharacter/Roar
+  guid: 69e465835aefc04eb05ca3fcaaa2fe02
+  Banks:
+  - {fileID: -7674830951687462440}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5093
+--- !u!114 &-4581938395426422526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainCharacter/WoodBreak
+  m_EditorClassIdentifier: 
+  Path: event:/MainCharacter/WoodBreak
+  guid: e9a694bb8c7ac24b849e09a263174f0d
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3343
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,14 +151,69 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 5180859049207425450}
   - {fileID: -7674830951687462440}
-  EditorEvents: []
+  - {fileID: 8030318256410987192}
+  EditorEvents:
+  - {fileID: -7540578399399636183}
+  - {fileID: 3620755819587347946}
+  - {fileID: 5100038162060747456}
+  - {fileID: -8659889493068345684}
+  - {fileID: -6920531374575372339}
+  - {fileID: -5444376745824684302}
+  - {fileID: 7843088608895812891}
+  - {fileID: -4581938395426422526}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7674830951687462440}
   StringsBanks:
   - {fileID: 5180859049207425450}
-  stringsBankWriteTime: 637540306636043077
+  stringsBankWriteTime: 637543147485205625
   cacheVersion: 6
+--- !u!114 &3620755819587347946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Bubbling Tube
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Bubbling Tube
+  guid: 60f4b5ec307b59449099568c8fb3a86a
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11380
+--- !u!114 &5100038162060747456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Leaking
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Leaking
+  guid: 150f10c61fa3ac45855544000bddcb2c
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 42664
 --- !u!114 &5180859049207425450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,9 +229,53 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.strings.bank"
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637540306636043077
+  lastModified: 637543147485205625
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 688
+    Value: 1148
+  Exists: 1
+--- !u!114 &7843088608895812891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainCharacter/Nest for CheckPoint
+  m_EditorClassIdentifier: 
+  Path: event:/MainCharacter/Nest for CheckPoint
+  guid: 19ebdc08564ee346b25822e07df9f053
+  Banks:
+  - {fileID: -7674830951687462440}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2978
+--- !u!114 &8030318256410987192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Environment.bank
+  m_EditorClassIdentifier: 
+  Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Environment.bank"
+  Name: Environment
+  StudioPath: bank:/Environment
+  lastModified: 637543147486332612
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 982688
   Exists: 1
