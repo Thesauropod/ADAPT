@@ -38,7 +38,7 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.bank"
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637543147485175703
+  lastModified: 637543159450941935
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -113,6 +113,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5093
+--- !u!114 &-5152577994290762429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Aesthetic Door
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Aesthetic Door
+  guid: 31ef103be326b7409959ff7635749d5c
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
 --- !u!114 &-4581938395426422526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +159,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3343
+--- !u!114 &-230757391262779105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainCharacter/Step on Floor
+  m_EditorClassIdentifier: 
+  Path: event:/MainCharacter/Step on Floor
+  guid: 494465011173004783d5e5cafc09a3f4
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4200
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,12 +207,15 @@ MonoBehaviour:
   - {fileID: -5444376745824684302}
   - {fileID: 7843088608895812891}
   - {fileID: -4581938395426422526}
+  - {fileID: -5152577994290762429}
+  - {fileID: 4065407329659133151}
+  - {fileID: -230757391262779105}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7674830951687462440}
   StringsBanks:
   - {fileID: 5180859049207425450}
-  stringsBankWriteTime: 637543147485205625
+  stringsBankWriteTime: 637543159450971851
   cacheVersion: 6
 --- !u!114 &3620755819587347946
 MonoBehaviour:
@@ -191,6 +240,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11380
+--- !u!114 &4065407329659133151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Door
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Door
+  guid: 57e9461af6d235439131bdfd603edc10
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1350
 --- !u!114 &5100038162060747456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,11 +301,11 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.strings.bank"
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637543147485205625
+  lastModified: 637543159450971851
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1148
+    Value: 1272
   Exists: 1
 --- !u!114 &7843088608895812891
 MonoBehaviour:
@@ -273,9 +345,9 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Environment.bank"
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 637543147486332612
+  lastModified: 637543159452243545
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 982688
+    Value: 1098656
   Exists: 1
