@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkController : MonoBehaviour
+public class SivonController : MonoBehaviour
 {
-    private Rigidbody m_rigidBody;
-    private CapsuleCollider m_capsuleCollider;
+    private Rigidbody2D m_rigidBody;
+    private CapsuleCollider2D m_capsuleCollider;
     private Vector3 velocity = Vector3.zero;
     private float facing = 1;
-    private bool grounded = false;
-    private bool jumping = false;
-    private bool dashing = false;
+    private bool isGrounded = false;
+    private bool isJumping = false;
+    private bool isDashing = false;
 
     [SerializeField]
     private float m_walkAcceleration;
@@ -35,32 +35,32 @@ public class WalkController : MonoBehaviour
 
     private void Awake()
     {
-        m_capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
-        m_rigidBody = gameObject.GetComponent<Rigidbody>();
+        m_capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
+        m_rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Gravity & Jump
-        grounded = false;
-        if (Physics.Raycast(transform.position, -transform.up, m_capsuleCollider.height / 2 + 0.1f))
+        isGrounded = false;
+        if (Physics.Raycast(transform.position, -transform.up, m_capsuleCollider.size.y / 2 + 0.1f))
         {
-            grounded = true;
+            isGrounded = true;
         }
-        if (Input.GetKeyDown(KeyCode.Z) && grounded && !dashing)
+        if (Input.GetKeyDown(KeyCode.Z) && isGrounded && !isDashing)
         {
             velocity.y += m_jumpForce;
-            grounded = false;
-            jumping = true;
+            isGrounded = false;
+            isJumping = true;
         }
         if (!Input.GetKey(KeyCode.Z))
         {
-            jumping = false;
+            isJumping = false;
         }
-        if (!grounded && !dashing)
+        if (!isGrounded && !isDashing)
         {
-            if (jumping)
+            if (isJumping)
             {
                 velocity.y = Mathf.Clamp(velocity.y - m_jumpGravity, -m_terminalVelocity, m_terminalVelocity);
             }
@@ -71,7 +71,7 @@ public class WalkController : MonoBehaviour
         }
 
         // Horizontal Movement
-        if (m_deadZone < Mathf.Abs(Input.GetAxis("Horizontal")) && !dashing)
+        if (m_deadZone < Mathf.Abs(Input.GetAxis("Horizontal")) && !isDashing)
         {
             velocity.x = Mathf.Clamp(velocity.x + Mathf.Sign(Input.GetAxis("Horizontal")) * m_walkAcceleration, -m_maxWalkSpeed, m_maxWalkSpeed);
             facing = Mathf.Sign(Input.GetAxis("Horizontal"));
@@ -88,17 +88,17 @@ public class WalkController : MonoBehaviour
         //Dash control
         if (Input.GetKeyDown(KeyCode.C))
         {
-            dashing = true;
+            isDashing = true;
             StartCoroutine(Dash());
         }
 
         // Nullifying velocity when colliding with objects (stops player from sticking to walls, being able to jump around ceilings, etc.)
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Mathf.Sign(velocity.x) * transform.right, out hit, m_capsuleCollider.radius + 0.1f))
+        if (Physics.Raycast(transform.position, Mathf.Sign(velocity.x) * transform.right, out hit, m_capsuleCollider.size.x / 2 + 0.1f))
         {
             velocity.x = 0;
         }
-        if (Physics.Raycast(transform.position, Mathf.Sign(velocity.y) * transform.up, m_capsuleCollider.height / 2 + 0.1f))
+        if (Physics.Raycast(transform.position, Mathf.Sign(velocity.y) * transform.up, m_capsuleCollider.size.y / 2 + 0.1f))
         {
             velocity.y = 0;
         }
@@ -117,7 +117,7 @@ public class WalkController : MonoBehaviour
                 velocity.x += dashDir * (m_dashSpeed - i / m_dashDuration * m_dashSpeed);
                 yield return new WaitForEndOfFrame();
             }
-            dashing = false;
+            isDashing = false;
         }
     }
 }
