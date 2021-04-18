@@ -9,13 +9,79 @@
 [LOG] DownMix::init                            : done.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000020274A05628 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000016C518D9558 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1088896
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 10048
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000003760E9F0D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFBF68B7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFBF68B7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFBF68B7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFBF68B7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016C51182FB8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='sliding door', format=5, channels=2, frequency=48000, lengthbytes=30304, lengthpcm=188928, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.457520.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1181056
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 5088
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000003760E9F0D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFBF68B7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFBF68B7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFBF68B7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFBF68B7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016C511833D8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Nest for CheckPoint', format=5, channels=2, frequency=48000, lengthbytes=28832, lengthpcm=169344, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.529480.
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] SoundI::release                          : Bubbling Tube (0000016BBE733A98)
+[LOG] SoundI::release                          :     Bubbling Tube (0000016BE57AE558)
+[LOG] SoundI::release                          :     Bubbling Tube (0000016C50F3B4E8)
+[LOG] SoundI::release                          : Sifi Warning (0000016B58EC9BC8)
+[LOG] SoundI::release                          :     Sifi Warning (0000016BE57AE3B8)
+[LOG] SoundI::release                          :     Sifi Warning (0000016C50F3B338)
+[LOG] SoundI::release                          : Leaking (0000016BE5284D18)
+[LOG] SoundI::release                          :     Leaking (0000016BBB945BE8)
+[LOG] SoundI::release                          :     Leaking (0000016C50F39838)
+[LOG] SoundI::release                          : bgm (0000016B58EC9D78)
+[LOG] SoundI::release                          :     bgm (0000016BE57AE218)
+[LOG] SoundI::release                          :     bgm (0000016BE5283068)
+[LOG] SoundI::release                          :  (0000016BBC8B1968)
+[LOG] SoundI::release                          :     Nest for CheckPoint (0000016BE57702A8)
+[LOG] SoundI::release                          :  (0000016BBC8B34B8)
+[LOG] SoundI::release                          :     Roar_1 (0000016BE5770448)
+[LOG] SoundI::release                          :  (0000016BBC8B0998)
+[LOG] SoundI::release                          :     Roar_2 (0000016BE5770788)
+[LOG] SoundI::release                          :  (0000016BBC8B0F58)
+[LOG] SoundI::release                          :     Roar_3 (0000016BE57705E8)
+[LOG] SoundI::release                          :  (0000016BBC8B1518)
+[LOG] SoundI::release                          :     sliding door (0000016BE5770108)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
