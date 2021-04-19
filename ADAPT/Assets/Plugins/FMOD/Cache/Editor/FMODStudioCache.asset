@@ -38,7 +38,7 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.bank"
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637543809918668792
+  lastModified: 637543815676706832
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -90,6 +90,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12148
+--- !u!114 &-6097036586339013965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/Victory
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/Victory
+  guid: a8e28c405d67f74f90016739f67a89cb
+  Banks:
+  - {fileID: 8030318256410987192}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5200
 --- !u!114 &-5444376745824684302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,12 +235,13 @@ MonoBehaviour:
   - {fileID: -230757391262779105}
   - {fileID: 8836476890611045334}
   - {fileID: 2230812792992064831}
+  - {fileID: -6097036586339013965}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7674830951687462440}
   StringsBanks:
   - {fileID: 5180859049207425450}
-  stringsBankWriteTime: 637543809918688740
+  stringsBankWriteTime: 637543815676726779
   cacheVersion: 6
 --- !u!114 &2230812792992064831
 MonoBehaviour:
@@ -326,11 +350,11 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.strings.bank"
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637543809918688740
+  lastModified: 637543815676726779
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1376
+    Value: 1414
   Exists: 1
 --- !u!114 &7843088608895812891
 MonoBehaviour:
@@ -370,11 +394,11 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Environment.bank"
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 637543809915068418
+  lastModified: 637543815676437562
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1222560
+    Value: 1292864
   Exists: 1
 --- !u!114 &8836476890611045334
 MonoBehaviour:
