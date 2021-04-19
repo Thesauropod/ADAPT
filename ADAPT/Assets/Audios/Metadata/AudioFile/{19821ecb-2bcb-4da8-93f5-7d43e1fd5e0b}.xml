@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{19821ecb-2bcb-4da8-93f5-7d43e1fd5e0b}">
+		<property name="assetPath">
+			<value>Nest for CheckPoint.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.528</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3f8e8694-2818-4549-8dd2-7fabd33ad9dc}</destination>
+		</relationship>
+	</object>
+</objects>

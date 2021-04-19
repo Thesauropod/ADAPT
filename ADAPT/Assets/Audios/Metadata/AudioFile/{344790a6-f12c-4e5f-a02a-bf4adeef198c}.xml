@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{344790a6-f12c-4e5f-a02a-bf4adeef198c}">
+		<property name="assetPath">
+			<value>Attack1.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.7428571428571429</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3f8e8694-2818-4549-8dd2-7fabd33ad9dc}</destination>
+		</relationship>
+	</object>
+</objects>
