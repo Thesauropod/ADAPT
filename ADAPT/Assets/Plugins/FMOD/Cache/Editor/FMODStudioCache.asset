@@ -38,7 +38,7 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.bank"
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637543593229022141
+  lastModified: 637543809918668792
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -217,7 +217,7 @@ MonoBehaviour:
   - {fileID: -7674830951687462440}
   StringsBanks:
   - {fileID: 5180859049207425450}
-  stringsBankWriteTime: 637543593229062013
+  stringsBankWriteTime: 637543809918688740
   cacheVersion: 6
 --- !u!114 &2230812792992064831
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Master.strings.bank"
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637543593229062013
+  lastModified: 637543809918688740
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -370,7 +370,7 @@ MonoBehaviour:
   Path: "D:/\u65B0\u5EFA\u6587\u4EF6\u5939/SoundListForADAPT/Build/Desktop/Environment.bank"
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 637543593218205703
+  lastModified: 637543809915068418
   LoadResult: 0
   FileSizes:
   - Name: Desktop
