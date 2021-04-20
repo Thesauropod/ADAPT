@@ -5,26 +5,33 @@ using UnityEngine.Animations;
 
 public class SivonController : MonoBehaviour
 {
+    private Animator m_sprite;
     private Rigidbody2D m_rigidBody;
     private CapsuleCollider2D m_collider;
-    private Animator m_sprite;
     private Vector3 m_velocity = Vector3.zero;
+    private List<int> m_dNACount = new List<int>(4);
     private float m_facing = 1;
-    private bool m_isGrounded = false;
-    private bool m_isDashing = false;
-    private bool m_isAttacking = false;
-    private bool m_isJumping = false;
+    private float m_currentDashCooldown;
     private bool m_isDead = false;
     private bool m_canJump = false;
+    private bool m_canDash = false;
+    private bool m_isDashing = false;
+    private bool m_isJumping = false;
+    private bool m_isGrounded = false;
+    private bool m_isAttacking = false;
+
+    public enum DNATypes { Alas, Armatus, Bellum, Spiculum }
+
+    [Header("Movement")]
 
     [SerializeField]
     private float m_walkAcceleration;
     [SerializeField]
     private float m_maxWalkSpeed;
     [SerializeField]
-    private float m_dashSpeed;
+    private float m_deceleration;
     [SerializeField]
-    private float m_dashDuration;
+    private float m_deadZone;
     [SerializeField]
     private float m_jumpForce;
     [SerializeField]
@@ -33,18 +40,58 @@ public class SivonController : MonoBehaviour
     private float m_jumpGravity;
     [SerializeField]
     private float m_terminalVelocity;
-    [SerializeField]
-    private float m_deceleration;
-    [SerializeField]
-    private float m_deadZone;
 
-    public enum DNATypes { Alas, Armatus, Bellum, Spiculum }
+    [Header("Combat")]
+
+    [SerializeField]
+    private float m_baseAttackDamage;
+    [SerializeField]
+    private float m_attackCooldown;
+    [SerializeField]
+    private float m_baseHealth;
+
+    [Header("Progression")]
+
+    [SerializeField]
+    private int m_mutationThreshold;
+    [SerializeField]
+    private int m_mutationCap;
+
+    [Header("Wings")]
+
+    [SerializeField]
+    private float m_jumpHeightModifier;
+
+    [Header("Armor")]
+
+    [SerializeField]
+    private float m_healthModifier;
+
+    [Header("Claws")]
+
+    [SerializeField]
+    private float m_damageModifier;
+
+    [Header("Spikes")]
+
+    [SerializeField]
+    private float m_dashSpeed;
+    [SerializeField]
+    private float m_dashDuration;
+    [SerializeField]
+    private float m_dashCooldown;
+    [SerializeField]
+    private float m_dashCooldownModifier;
 
     private void Awake()
     {
         m_collider = GetComponent<CapsuleCollider2D>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_sprite = GetComponentInChildren<Animator>();
+        for (int i = 0; i < m_dNACount.Count; i++)
+        {
+            m_dNACount[i] = 0;
+        }
     }
     
     void Update()
@@ -67,25 +114,28 @@ public class SivonController : MonoBehaviour
     private void Movement()
     {
         // Dash control
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && m_canDash)
         {
             m_isDashing = true;
             StartCoroutine(Dash());
         }
 
-        // Gravity
-
-        if (Physics2D.Raycast(transform.position, -transform.up, m_collider.size.y / 2 + m_baseGravity * Time.deltaTime))
-        {
-            m_isGrounded = true;
-        }
-
-        // Temporary for before coding multi-jump //
-        m_canJump = m_isGrounded;
-        ////////////////////////////////////////////
-
         if (!m_isDashing)
         {
+            Debug.DrawRay(transform.position - transform.up * m_collider.size.y / 2, -transform.up, Color.red, m_baseGravity * Time.fixedDeltaTime);
+            if (Physics2D.Raycast(transform.position - transform.up * m_collider.size.y / 2, -transform.up, m_baseGravity * Time.fixedDeltaTime))
+            {
+                m_isGrounded = true;
+            }
+            else
+            {
+                m_isGrounded = false;
+            }
+
+            // Temporary for before coding multi-jump //
+            m_canJump = m_isGrounded;
+            ////////////////////////////////////////////
+
             // Handles Input for Horizontal Movement & Jump
 
             if (Input.GetKeyDown(KeyCode.Z) && m_canJump)
@@ -98,7 +148,7 @@ public class SivonController : MonoBehaviour
             {
                 m_isJumping = false;
             }
-            if (!m_isDashing)
+            if (!m_isDashing && !m_isGrounded)
             {
                 if (m_isJumping)
                 {
@@ -122,12 +172,10 @@ public class SivonController : MonoBehaviour
             {
                 m_velocity.x = 0;
             }
-
-            Debug.Log(m_velocity.x);
+            
             if(m_deadZone < Mathf.Abs(m_velocity.x))
             {
                 m_facing = Mathf.Sign(m_velocity.x);
-                Debug.Log(m_facing);
             }
 
             if (Mathf.Sign(transform.localScale.x) == m_facing)
@@ -145,17 +193,18 @@ public class SivonController : MonoBehaviour
         // This is separate from the rest of the movement code so that it can be used separately with the Dash coroutine
 
         // Nullifies m_velocity when colliding with objects (stops player from sticking to walls, being able to jump around ceilings, etc.)
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + Mathf.Sign(m_velocity.x) * transform.right * m_collider.size.x / 2, Mathf.Sign(m_velocity.x) * transform.right, out hit, m_velocity.x * Time.deltaTime))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right * Mathf.Sign(m_velocity.x) * m_collider.size.x / 2, transform.right, m_velocity.x * Time.fixedDeltaTime);
+        if (hit)
         {
             m_velocity.x = hit.distance;
         }
-        if (Physics.Raycast(transform.position + Mathf.Sign(m_velocity.y) * transform.up * m_collider.size.y / 2, Mathf.Sign(m_velocity.y) * transform.up, out hit, m_velocity.y * Time.deltaTime))
+        hit = Physics2D.Raycast(transform.position + transform.up * Mathf.Sign(m_velocity.y) * m_collider.size.y / 2, transform.up, m_velocity.y * Time.fixedDeltaTime);
+        if (hit)
         {
             m_velocity.y = hit.distance;
         }
 
-        // Applies m_velocity to Rigidbody
+        // Applies m_velocity to Rigidbody velocity
         m_rigidBody.velocity = new Vector3(Mathf.Clamp(m_velocity.x, -m_terminalVelocity, m_terminalVelocity), Mathf.Clamp(m_velocity.y, -m_terminalVelocity, m_terminalVelocity), 0);
     }
 
@@ -203,8 +252,23 @@ public class SivonController : MonoBehaviour
                               |___/                                               
      */
 
-    private void ConsumeDNA(DNATypes dNAType)
+    public void ConsumeDNA(DNATypes dNAType)
     {
-
+        switch (dNAType)
+        {
+            case DNATypes.Alas:
+                m_dNACount[0]++;
+                break;
+            case DNATypes.Armatus:
+                m_dNACount[0]++;
+                break;
+            case DNATypes.Bellum:
+                m_dNACount[0]++;
+                break;
+            case DNATypes.Spiculum:
+                m_dNACount[0]++;
+                break;
+            default: break;
+        }
     }
 }
