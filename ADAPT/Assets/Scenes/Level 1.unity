@@ -7650,6 +7650,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1437621490}
   - component: {fileID: 1437621491}
+  - component: {fileID: 1437621492}
+  - component: {fileID: 1437621493}
   m_Layer: 0
   m_Name: SlidingDoor
   m_TagString: Untagged
@@ -7721,6 +7723,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1437621492
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437621489}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.178925, y: -3.4194918}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3912973, y: 17.638987}
+  m_EdgeRadius: 0
+--- !u!114 &1437621493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437621489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60ce930a319a8d4fa5116700acd8d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxYPos: 40
+  speed: 0.5
 --- !u!1 &1452930799
 GameObject:
   m_ObjectHideFlags: 0
@@ -8288,7 +8330,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 741073076}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1554524696
 MonoBehaviour:
@@ -8985,7 +9027,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &1721757233
 EdgeCollider2D:
@@ -9439,6 +9481,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9188741636632748303, guid: 2ab889d461ce4a74aa11f0c93694c1e7,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.006709099
+      objectReference: {fileID: 0}
+    - target: {fileID: -9188741636632748303, guid: 2ab889d461ce4a74aa11f0c93694c1e7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.0134087
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616480448685100511, guid: 2ab889d461ce4a74aa11f0c93694c1e7,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6841304263589781156, guid: 2ab889d461ce4a74aa11f0c93694c1e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10364,7 +10421,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 741073076}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1983739356
 MonoBehaviour:
