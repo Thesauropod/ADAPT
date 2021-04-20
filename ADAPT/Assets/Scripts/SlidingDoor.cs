@@ -5,8 +5,8 @@ using UnityEngine;
 public class SlidingDoor : MonoBehaviour
 {
 
-    float startPos;
-    public float maxYPos;
+    Vector2 startPos;
+    public Transform targetPos;
     public float speed;
     bool moveUp;
     bool moveDown;
@@ -14,7 +14,7 @@ public class SlidingDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position.y;
+        startPos = this.transform.position;
         moveUp = false;
         moveDown = false;
     }
@@ -22,40 +22,22 @@ public class SlidingDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(startPos);
         //Debug.Log(transform.position.y);
 
-        if (transform.position.y <= startPos)
+        //Moves object to position of target object
+        if (moveUp)
         {
-            moveDown = false;
-        }
-
-        if (moveUp && startPos <= maxYPos)
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y + speed * Time.deltaTime);
-            //transform.Translate(Vector2.up * speed * Time.deltaTime);
-        }
-        else if(transform.position.y >= maxYPos)
-        {
-            moveUp = false;
-        }
-
-        if (moveDown && startPos >= maxYPos)
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y - speed * Time.deltaTime);
-        }
-       
-    }
-
-    IEnumerator MoveUp()
-    {
-
-        for (float f = 0.05f; f <= maxYPos; f += 0.05f)
-        {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
             //transform.position = new Vector2(transform.position.x, transform.position.y + speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPos.position, speed * Time.deltaTime);
         }
 
-        yield return new WaitForSeconds(0.05f);
+        //Moves object to original position when game started
+        if (moveDown)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +47,7 @@ public class SlidingDoor : MonoBehaviour
         if (collision.tag == "Player")
         {
             moveUp = true;
+            moveDown = false;
         }
     }
 
