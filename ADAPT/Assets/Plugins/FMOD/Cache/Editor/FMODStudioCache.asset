@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: event:/Environment/sliding door
   guid: d2cbd78b25f28943bd3777e0b9b73e4d
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1754784
-  Exists: 1
+  Exists: 0
 --- !u!114 &-7540578399399636183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   Path: event:/BGM/Main BGM
   guid: 34f8cf951a8a954f932413e2756d7a87
   Banks:
-  - {fileID: -7674830951687462440}
+  - {fileID: -4470006258331410011}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   Path: event:/Environment/Warning Alarm
   guid: 3c30078066878e458a8bf72a4fd61d3f
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   Path: event:/Environment/Victory
   guid: a8e28c405d67f74f90016739f67a89cb
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
   Path: event:/MainCharacter/Roar
   guid: 69e465835aefc04eb05ca3fcaaa2fe02
   Banks:
-  - {fileID: -7674830951687462440}
+  - {fileID: -4470006258331410011}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
   Path: event:/Environment/Aesthetic Door
   guid: 31ef103be326b7409959ff7635749d5c
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
   Path: event:/MainCharacter/WoodBreak
   guid: e9a694bb8c7ac24b849e09a263174f0d
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -182,6 +182,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3343
+--- !u!114 &-4470006258331410011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audios/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637544606508350441
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-230757391262779105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +216,7 @@ MonoBehaviour:
   Path: event:/MainCharacter/Step on Floor
   guid: 494465011173004783d5e5cafc09a3f4
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -205,6 +224,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4200
+--- !u!114 &-193274490628226871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Environment.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audios/Build/Desktop/Environment.bank
+  Name: Environment
+  StudioPath: bank:/Environment
+  lastModified: 637544606508260870
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +256,9 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 5180859049207425450}
-  - {fileID: -7674830951687462440}
-  - {fileID: 8030318256410987192}
+  - {fileID: 4486309812079040241}
+  - {fileID: -193274490628226871}
+  - {fileID: -4470006258331410011}
   EditorEvents:
   - {fileID: -7540578399399636183}
   - {fileID: 3620755819587347946}
@@ -238,10 +276,10 @@ MonoBehaviour:
   - {fileID: -6097036586339013965}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7674830951687462440}
+  - {fileID: -4470006258331410011}
   StringsBanks:
-  - {fileID: 5180859049207425450}
-  stringsBankWriteTime: 637543815676726779
+  - {fileID: 4486309812079040241}
+  stringsBankWriteTime: 637544606508355356
   cacheVersion: 6
 --- !u!114 &2230812792992064831
 MonoBehaviour:
@@ -258,7 +296,7 @@ MonoBehaviour:
   Path: event:/BGM/theme-320 kbps
   guid: 2bc9437c752d4542bb98f2fafcf9ecb4
   Banks:
-  - {fileID: -7674830951687462440}
+  - {fileID: -4470006258331410011}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -281,7 +319,7 @@ MonoBehaviour:
   Path: event:/Environment/Bubbling Tube
   guid: 60f4b5ec307b59449099568c8fb3a86a
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -304,7 +342,7 @@ MonoBehaviour:
   Path: event:/Environment/Door
   guid: 57e9461af6d235439131bdfd603edc10
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -312,6 +350,27 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1350
+--- !u!114 &4486309812079040241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audios/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637544606508355356
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1414
+  Exists: 1
 --- !u!114 &5100038162060747456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +386,7 @@ MonoBehaviour:
   Path: event:/Environment/Leaking
   guid: 150f10c61fa3ac45855544000bddcb2c
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -355,7 +414,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1414
-  Exists: 1
+  Exists: 0
 --- !u!114 &7843088608895812891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +430,7 @@ MonoBehaviour:
   Path: event:/MainCharacter/Nest for CheckPoint
   guid: 19ebdc08564ee346b25822e07df9f053
   Banks:
-  - {fileID: -7674830951687462440}
+  - {fileID: -4470006258331410011}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -399,7 +458,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1292864
-  Exists: 1
+  Exists: 0
 --- !u!114 &8836476890611045334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +474,7 @@ MonoBehaviour:
   Path: event:/Environment/Laser
   guid: 1f22ea2551d40c4ba3f5fd344aba95e3
   Banks:
-  - {fileID: 8030318256410987192}
+  - {fileID: -193274490628226871}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
