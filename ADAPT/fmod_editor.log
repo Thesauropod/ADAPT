@@ -1,251 +1,31 @@
-[LOG] System::create                           :     Header version = 2.01.07. Current version = 2.01.07.
-[LOG] Manager::init                            :     maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
-[LOG] SystemI::init                            :     Initialize version=20107 (113487), maxchannels=256, flags=0x00020000
-[LOG] SystemI::setOutputInternal               :     Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       :     Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=8, nSamplesPerSec=48000, nAvgBytesPerSec=1536000, nBlockAlign=32, wBitsPerSample=32, cbSize=22.
-[LOG] OutputWASAPI::init                       :     Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x0000063F, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       :     Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
-[LOG] DownMix::init                            :     dspbuffersize: 1024  rate: 48000. output speaker mode: 7, input speaker mode 3
-[LOG] DownMix::init                            :     done.
-[LOG] Thread::initThread                       :     Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
-[LOG] Thread::initThread                       :     Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       :     manager 00000236F9B69058 isAsync 0 updatePeriod 0.02
-[LOG] AsyncManager::init                       :     done
-[LOG] PlaybackSystem::init                     :     
-[LOG] Thread::initThread                       :     Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
-[LOG] PlaybackSystem::init                     :     done
-[LOG] Thread::initThread                       :     Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
-[LOG] Manager::init                            :     done.
-[LOG] SystemI::createSoundInternal             :     Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1280416
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000050336FF2E8
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->useropen           = 00007FFC03ED7B10
-[LOG] SystemI::createSoundInternal             :     exinfo->userclose          = 00007FFC03ED7AE0
-[LOG] SystemI::createSoundInternal             :     exinfo->userread           = 00007FFC03ED7BE0
-[LOG] SystemI::createSoundInternal             :     exinfo->userseek           = 00007FFC03ED7CA0
-[LOG] SystemI::createSoundInternal             :     exinfo->fileuserdata       = 000002368A718D98
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            :     register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             :     Sample 0/1: name='sliding door', format=5, channels=2, frequency=48000, lengthbytes=30304, lengthpcm=188928, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.457520.
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB4F8DC8
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB4F8DC8
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB4F81F8
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB4F81F8
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236A95ABDE8
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236A95ABDE8
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236A95AC9B8
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236A95AC9B8
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 00000236AB1862F8 : node = 00000236F8D69220
-[LOG] SystemI::createSound                     :     add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB1862F8
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSound                     : setdata soundi = 00000236468D8818 : node = 00000236F8D695E0
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSound                     : add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236F8D69330
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 520
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Bubbling Tube', format=5, channels=2, frequency=48000, lengthbytes=112768, lengthpcm=599040, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.289856.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB1862F8
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236468D8818
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236F8D696F0
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 520
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Bubbling Tube', format=5, channels=2, frequency=48000, lengthbytes=112768, lengthpcm=599040, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.289856.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236468D8818
-[LOG] SoundI::release                          :     Bubbling Tube (00000236AB4F83A8)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F9A14058)
-[LOG] SoundI::release                          : Bubbling Tube (00000236A95AC4A8)
-[LOG] SoundI::release                          :     Bubbling Tube (00000236AB4F8558)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F9A13358)
-[LOG] SoundI::release                          : Bubbling Tube (00000236A95ABDE8)
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 00000236AB4F83A8 : node = 00000236AB5A4470
-[LOG] SystemI::createSound                     :     add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB4F83A8
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSound                     : setdata soundi = 00000236AB4F8708 : node = 00000236AB5A46F0
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSound                     : add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236AB5A4580
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 900
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Sifi Warning', format=5, channels=2, frequency=48000, lengthbytes=165056, lengthpcm=607104, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.294800.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB4F83A8
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB4F8708
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236AB5A4800
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 900
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Sifi Warning', format=5, channels=2, frequency=48000, lengthbytes=165056, lengthpcm=607104, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.294800.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB4F8708
-[LOG] SoundI::release                          :     Sifi Warning (00000236AB4F7E98)
-[LOG] SoundI::release                          : Sifi Warning (00000236F9A14398)
-[LOG] SoundI::release                          : Sifi Warning (00000236A95AC9B8)
-[LOG] SoundI::release                          :     Sifi Warning (00000236AB186EC8)
-[LOG] SoundI::release                          : Sifi Warning (00000236F9A168F8)
-[LOG] SoundI::release                          : Sifi Warning (00000236AB4F81F8)
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 00000236AB4F81F8 : node = 00000236A732BDC0
-[LOG] SystemI::createSound                     :     add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB4F81F8
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSound                     : setdata soundi = 00000236AB1878E8 : node = 00000236A732C7C0
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSound                     : add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236A732BED0
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 520
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Bubbling Tube', format=5, channels=2, frequency=48000, lengthbytes=112768, lengthpcm=599040, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.289856.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB4F81F8
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB1878E8
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236A732C8D0
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 520
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Bubbling Tube', format=5, channels=2, frequency=48000, lengthbytes=112768, lengthpcm=599040, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.289856.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB1878E8
-[LOG] SoundI::release                          :     Bubbling Tube (00000236468D8818)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F9A11958)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F8EF7458)
-[LOG] SoundI::release                          :     Bubbling Tube (00000236AB1862F8)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F9A117B8)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F50B4FA8)
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 00000236AB186808 : node = 00000236A732A530
-[LOG] SystemI::createSound                     :     add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236AB186808
-[LOG] SystemI::createSound                     :     filename = Assets\Audios\Build\Desktop/Environment.bank : mode 02010082
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSound                     : setdata soundi = 00000236F8EF7458 : node = 00000236A732A7B0
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSound                     : add node to async list : head = 00000236F927BB28.  list count = 0
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236A732A640
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 900
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Sifi Warning', format=5, channels=2, frequency=48000, lengthbytes=165056, lengthpcm=607104, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.294800.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236AB186808
-[LOG] AsyncThread::threadFunc                  :     Starting Asynchronous operation on sound 00000236F8EF7458
-[LOG] SystemI::createSoundInternal             : Create name='Assets\Audios\Build\Desktop/Environment.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1280416
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 12448
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000236A732A8C0
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekposition = 900
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             : Stream 0/1: name='Sifi Warning', format=5, channels=2, frequency=48000, lengthbytes=165056, lengthpcm=607104, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.294800.
-[LOG] AsyncThread::threadFunc                  :     Finished Asynchronous operation on sound 00000236F8EF7458
-[LOG] SoundI::release                          :     Sifi Warning (00000236AB4F8708)
-[LOG] SoundI::release                          : Sifi Warning (00000236F9A13358)
-[LOG] SoundI::release                          : Sifi Warning (00000236A95AC4A8)
-[LOG] SoundI::release                          :     Sifi Warning (00000236AB4F83A8)
-[LOG] SoundI::release                          : Sifi Warning (00000236F9A12998)
-[LOG] SoundI::release                          : Sifi Warning (00000236A95ABDE8)
-[LOG] SoundI::release                          :     Bubbling Tube (00000236AB1878E8)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F9A12B38)
-[LOG] SoundI::release                          : Bubbling Tube (00000236A95AC9B8)
-[LOG] SoundI::release                          :     Bubbling Tube (00000236AB4F81F8)
-[LOG] SoundI::release                          : Bubbling Tube (00000236F9A13698)
-[LOG] SoundI::release                          : Bubbling Tube (00000236AB187C48)
-[LOG] SoundI::release                          :     Sifi Warning (00000236F8EF7458)
-[LOG] SoundI::release                          : Sifi Warning (00000236F9A168F8)
-[LOG] SoundI::release                          : Sifi Warning (00000236F50B4FA8)
-[LOG] SoundI::release                          :     Sifi Warning (00000236AB186808)
-[LOG] SoundI::release                          : Sifi Warning (00000236F9A13838)
-[LOG] SoundI::release                          : Sifi Warning (00000236468D8818)
-[LOG] SoundI::release                          :     Leaking (00000236AB187738)
-[LOG] SoundI::release                          : Leaking (00000236F9A16A98)
-[LOG] SoundI::release                          : Leaking (00000236AB4F8DC8)
-[LOG] SoundI::release                          :     bgm (00000236AB4F88B8)
-[LOG] SoundI::release                          : bgm (00000236F9A13B78)
-[LOG] SoundI::release                          : bgm (00000236A95ABA88)
-[LOG] SoundI::release                          :      (0000023721C4A1C8)
-[LOG] SoundI::release                          : Roar_1 (00000236F9A141F8)
-[LOG] SoundI::release                          :      (0000023721C4A618)
-[LOG] SoundI::release                          : Roar_2 (00000236F9A16418)
-[LOG] SoundI::release                          :      (0000023721C4A4A8)
-[LOG] SoundI::release                          : Roar_3 (00000236F9A12658)
-[LOG] SoundI::release                          :      (00000237237A54F8)
-[LOG] SoundI::release                          : WoodBreak_Heavy (00000236F9A16278)
-[LOG] SoundI::release                          :      (0000023721C4A058)
-[LOG] SoundI::release                          : WoodBreak_Light (00000236F9A13018)
-[LOG] SoundI::release                          :      (00000236F5F3E958)
-[LOG] SoundI::release                          : sliding door (00000236F9A112D8)
-[LOG] Thread::callback                         :     FMOD Studio update thread finished.
-[LOG] Thread::callback                         :     FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   :     Profiler disconnecting all clients
-[LOG] Thread::callback                         :     FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      :     
-[LOG] LiveUpdate::reset                        :     Reset connection (reason Disconnected)
-[LOG] Thread::callback                         :     FMOD stream thread finished.
-[LOG] Thread::callback                         :     FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   :     Profiler disconnecting all clients
-[LOG] SystemI::close                           :     Closed.
-[LOG] Thread::callback                         :     FMOD Studio bank load thread finished.
-[LOG] Thread::callback                         :     FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      :     
-[LOG] LiveUpdate::reset                        :     Reset connection (reason Disconnected)
-[LOG] Thread::callback                         :     FMOD stream thread finished.
-[LOG] Thread::callback                         :     FMOD mixer thread finished.
-[LOG] SystemI::close                           :     Closed.
-[LOG] Thread::callback                         :     FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         :     FMOD file thread finished.
+[LOG] System::create                           : Header version = 2.01.07. Current version = 2.01.07.
+[LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
+[LOG] SystemI::init                            : Initialize version=20107 (113487), maxchannels=256, flags=0x00020000
+[LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
+[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
+[LOG] AsyncManager::init                       : manager 0000029ED9AD64E8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : done
+[LOG] PlaybackSystem::init                     : 
+[LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] PlaybackSystem::init                     : done
+[LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.

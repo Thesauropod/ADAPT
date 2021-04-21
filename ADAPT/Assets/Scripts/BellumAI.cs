@@ -15,6 +15,7 @@ public class BellumAI : MonoBehaviour
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
     public bool canCharge = false, chargeTriggered = false, jumpTriggered = false, patrolling = false;
     public bool playerDetected = false, activeDamage = true;
+    private bool dNASent = false;
     public Transform target;
     private Vector3 patrolTarget;
 
@@ -71,6 +72,12 @@ public class BellumAI : MonoBehaviour
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttacking", false);
                 anim.SetBool("isDead", true);
+
+                if (!dNASent)
+                {
+                    target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Armatus);
+                    dNASent = true;
+                }
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
                 break;
@@ -114,10 +121,9 @@ public class BellumAI : MonoBehaviour
         }
     }
 
-    public void HitTarget(float damage, float knockbackFactor)
+    public void HitTarget(float damage)
     {
-        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * knockbackFactor), ForceMode2D.Impulse);
-        health -= damage;
+        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * (damage * 10)), ForceMode2D.Impulse); health -= damage;
 
         if (health <= 0)
         {
@@ -146,12 +152,12 @@ public class BellumAI : MonoBehaviour
         if (rb2D.velocity.x > 0f)
         {
 
-            graphics.transform.localScale = new Vector3(-1, 1, 1);
+            graphics.transform.localScale = new Vector3(-.5f, .5f, 1);
         }
         else if (rb2D.velocity.x < 0f)
         {
 
-            graphics.transform.localScale = new Vector3(1, 1, 1);
+            graphics.transform.localScale = new Vector3(.5f, .5f, 1);
 
         }
         else

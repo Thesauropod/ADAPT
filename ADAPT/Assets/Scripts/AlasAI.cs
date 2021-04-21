@@ -13,7 +13,7 @@ public class AlasAI : MonoBehaviour
 
     private Vector3 patrolTarget, startLocation;
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
-    private bool attacking, patrolling;
+    private bool attacking, patrolling, dNASent = false;
     public bool playerDetected = false, activeDamage = true;
     public Transform target;
     // private Vector3 patrolTarget;
@@ -57,6 +57,12 @@ public class AlasAI : MonoBehaviour
             case State.Dead:
                 anim.SetBool("isAttacking", false);
                 anim.SetBool("isDead", true);
+
+                if (!dNASent)
+                {
+                    target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Armatus);
+                    dNASent = true;
+                }
                 //play animation
                 StopAllCoroutines();
                 StartCoroutine(KillUnit());
@@ -94,9 +100,9 @@ public class AlasAI : MonoBehaviour
         }
     }
 
-    public void HitTarget(float damage, float knockbackFactor)
+    public void HitTarget(float damage)
     {
-        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * knockbackFactor), ForceMode2D.Impulse);
+        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * (damage * 10)), ForceMode2D.Impulse);
         health -= damage;
 
         if (health <= 0)
