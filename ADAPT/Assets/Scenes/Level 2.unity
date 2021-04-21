@@ -3515,6 +3515,11 @@ PrefabInstance:
       propertyPath: Event
       value: event:/BGM/theme-320 kbps
       objectReference: {fileID: 0}
+    - target: {fileID: 7921619797370795401, guid: 2ab889d461ce4a74aa11f0c93694c1e7,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8434108950283024286, guid: 2ab889d461ce4a74aa11f0c93694c1e7,
         type: 3}
       propertyPath: m_RootOrder

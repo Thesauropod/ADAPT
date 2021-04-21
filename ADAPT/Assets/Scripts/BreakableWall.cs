@@ -14,7 +14,7 @@ public class BreakableWall : MonoBehaviour
     public GameObject brokenPiece;
 
     //Set Variables
-    public bool isDestroyed;
+    public bool isDestroyed=false;
     void Start()
     {
         myCollider = GetComponent<Collider2D>();
