@@ -103,9 +103,9 @@ public class SpiculumAI : MonoBehaviour
         }
     }
 
-    public void HitTarget(float damage, Vector2 direction, float knockbackFactor)
+    public void HitTarget(float damage, float knockbackFactor)
     {
-        rb2D.AddForce((direction.normalized * knockbackFactor), ForceMode2D.Impulse);
+        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * knockbackFactor), ForceMode2D.Impulse);
         health -= damage;
 
         if (health <= 0)
@@ -113,7 +113,7 @@ public class SpiculumAI : MonoBehaviour
             currentState = State.Dead;
         }
     }
-
+  
     private bool CheckAnimation()
     {
         return anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1.0f < 1.0f;

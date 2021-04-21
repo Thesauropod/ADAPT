@@ -39,10 +39,11 @@ public class BellumAI : MonoBehaviour
                 {
                     StartCoroutine(Patrol());
                 }
-                if (playerDetected) {
+                if (playerDetected)
+                {
                     currentState = State.Attack;
-                    
-                    
+
+
                 }
 
                 //Move back and forth
@@ -60,7 +61,7 @@ public class BellumAI : MonoBehaviour
                 {
                     StartCoroutine(DelayCharge());
                 }
-               
+
 
                 //Play attack animation, spawn hitbox
                 break;
@@ -113,9 +114,9 @@ public class BellumAI : MonoBehaviour
         }
     }
 
-    public void HitTarget(float damage, Vector2 direction, float knockbackFactor)
+    public void HitTarget(float damage, float knockbackFactor)
     {
-        rb2D.AddForce((direction.normalized *  knockbackFactor), ForceMode2D.Impulse);
+        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * knockbackFactor), ForceMode2D.Impulse);
         health -= damage;
 
         if (health <= 0)
@@ -123,25 +124,38 @@ public class BellumAI : MonoBehaviour
             currentState = State.Dead;
         }
     }
+    private Vector2 Direction(Vector3 tempTarget)
+    {
 
+        if (tempTarget.x - this.gameObject.transform.position.x < 0)
+        {
+            return Vector2.left;
+        }
+        else
+        {
+            return Vector2.right;
+        }
+    }
     private bool CheckAnimation()
     {
         return anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1.0f < 1.0f;
     }
 
-    private void FlipSprite() {
+    private void FlipSprite()
+    {
         if (rb2D.velocity.x > 0f)
         {
-           
+
             graphics.transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (rb2D.velocity.x < 0f)
         {
-         
+
             graphics.transform.localScale = new Vector3(1, 1, 1);
 
         }
-        else {
+        else
+        {
             return;
         }
     }
@@ -156,13 +170,15 @@ public class BellumAI : MonoBehaviour
         {
             return Vector2.right;
         }
-        else {
+        else
+        {
             return Vector2.zero;
         }
-        
+
     }
 
-    public void RecieveVisual(bool result) {
+    public void RecieveVisual(bool result)
+    {
         playerDetected = result;
     }
 
@@ -191,7 +207,7 @@ public class BellumAI : MonoBehaviour
 
     IEnumerator Patrol()
     {
-       
+
         patrolling = true;
         yield return new WaitForSeconds(5f);
         if (currentState == State.Patrol)
@@ -208,6 +224,6 @@ public class BellumAI : MonoBehaviour
     {
         yield return new WaitUntil(() => CheckAnimation() == true);
         Destroy(this.gameObject);
-        
+
     }
 }
