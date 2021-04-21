@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExitDoor: {fileID: 929583767}
-  speed: 0.5
+  speed: 0.01
 --- !u!1001 &190933729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8852,7 +8852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1724414963
 Transform:
   m_ObjectHideFlags: 0
@@ -9192,6 +9192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakableWall
       objectReference: {fileID: 0}
+    - target: {fileID: 7566364883374234036, guid: ae8961d77720a3046886a2b74efd3718,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae8961d77720a3046886a2b74efd3718, type: 3}
 --- !u!1001 &1796025865
@@ -9383,6 +9388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BreakableWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566364883374234036, guid: ae8961d77720a3046886a2b74efd3718,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae8961d77720a3046886a2b74efd3718, type: 3}
