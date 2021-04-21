@@ -5,16 +5,9 @@ using UnityEngine;
 public class DealDamage : MonoBehaviour
 {
 
-    GameObject Parent;
 
     public float damage, knockBackFactor;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Parent = this.Parent.gameObject;
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
      /*   if (Input.GetKeyDown(KeyCode.Space)) {
