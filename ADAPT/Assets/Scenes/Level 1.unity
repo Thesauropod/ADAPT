@@ -1362,6 +1362,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1794041821}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &180357026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7887591219099366331, guid: 762a712fcbdea7646860d49ea2dcd338,
+    type: 3}
+  m_PrefabInstance: {fileID: 6622043434639456879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &180357030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180357026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a751a09a9cd30e43903d39f31b9b17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExitDoor: {fileID: 929583767}
+  speed: 0.5
 --- !u!1001 &190933729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,10 +1389,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
+        type: 3}
+      propertyPath: m_dashDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 332044813836309289, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 332044813836309290, guid: 60cbb8e13e1417b4e966009340acffc5,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 332044813836309295, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
@@ -4674,6 +4704,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5427063305577829711, guid: 32b00518ef608314eb32c149a7206294,
     type: 3}
   m_PrefabInstance: {fileID: 5427063305764888202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &927735479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7566364883374234036, guid: ae8961d77720a3046886a2b74efd3718,
+    type: 3}
+  m_PrefabInstance: {fileID: 1898354754}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &929517396
 GameObject:
@@ -8816,7 +8852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1724414963
 Transform:
   m_ObjectHideFlags: 0
@@ -9937,6 +9973,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967148734}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1969673617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6622043435710234084, guid: 762a712fcbdea7646860d49ea2dcd338,
+    type: 3}
+  m_PrefabInstance: {fileID: 6622043434639456879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1969673624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969673617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c28978e4cb6764fb12dfbc60f047c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 927735479}
+  Control: 0
 --- !u!1 &1979042939
 GameObject:
   m_ObjectHideFlags: 0
@@ -10822,7 +10878,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6622043434897994624, guid: 762a712fcbdea7646860d49ea2dcd338,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6622043435651048570, guid: 762a712fcbdea7646860d49ea2dcd338,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622043435710234080, guid: 762a712fcbdea7646860d49ea2dcd338,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622043435710234081, guid: 762a712fcbdea7646860d49ea2dcd338,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622043435710234082, guid: 762a712fcbdea7646860d49ea2dcd338,
         type: 3}
       propertyPath: m_Enabled
       value: 0
