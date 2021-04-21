@@ -105,9 +105,9 @@ public class ArmatusAI : MonoBehaviour
         }
     }
 
-    public void HitTarget(float damage, Vector2 direction, float knockbackFactor)
+    public void HitTarget(float damage, float knockbackFactor)
     {
-        rb2D.AddForce((direction.normalized * knockbackFactor), ForceMode2D.Impulse);
+        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * knockbackFactor), ForceMode2D.Impulse);
         health -= damage;
 
         if (health <= 0)
@@ -115,6 +115,25 @@ public class ArmatusAI : MonoBehaviour
             currentState = State.Dead;
         }
     }
+
+    private Vector2 GetDirectionToTarget(Vector3 tempTarget)
+    {
+
+        if (tempTarget.x - rb2D.position.x < 0)
+        {
+            return Vector2.left;
+        }
+        else if (tempTarget.x - rb2D.position.x > 0)
+        {
+            return Vector2.right;
+        }
+        else
+        {
+            return Vector2.zero;
+        }
+
+    }
+
 
     private bool CheckAnimation()
     {
