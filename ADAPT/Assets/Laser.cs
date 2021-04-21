@@ -9,6 +9,8 @@ public class Laser : MonoBehaviour
     private float nextActionTime = 0.0f;
     public float period = 0.1f;
 
+    public bool IsOn;
+
     // Update is called once per frame
     void Update()
     {    
@@ -16,8 +18,10 @@ public class Laser : MonoBehaviour
             nextActionTime += period;
             if(Lasert.active == false){
                 Lasert.active = true;
+                IsOn = true;
             }else{
                 Lasert.active = false;
+                IsOn = false;
             }
         
         }
