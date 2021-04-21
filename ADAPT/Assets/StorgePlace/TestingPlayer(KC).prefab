@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8434108950283024286}
   - component: {fileID: 8434108950283024285}
   - component: {fileID: 8434108950283024284}
-  - component: {fileID: 8434108950283024280}
   - component: {fileID: 8529102075196105058}
   - component: {fileID: 7921619797370795401}
   - component: {fileID: 3169065863613295621}
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8434108950283024280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8434108950283024354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da354165597ebbb4b8e3d2f7587847dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.2
 --- !u!61 &8529102075196105058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,7 +129,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 4
 --- !u!114 &3169065863613295621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +188,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10588236, g: 0.16470589, b: 0.22352943, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
