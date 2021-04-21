@@ -141,19 +141,11 @@ public class SivonController : MonoBehaviour
             else
             {
                 m_isGrounded = false;
-                if (m_currentDashCooldown <= 0)
-                {
-                    m_currentDashCooldown = Mathf.Clamp(m_currentDashCooldown - Time.deltaTime, 0, m_dashCooldown);
-                }
-                if (m_currentAttackCooldown <= 0)
-                {
-                    m_currentAttackCooldown = Mathf.Clamp(m_currentAttackCooldown - Time.deltaTime, 0, m_attackCooldown);
-                }
             }
 
             // Horizontal Movement & Jump
 
-            if (Input.GetKeyDown(KeyCode.Z) && m_canJump)
+            if (Input.GetKeyDown(KeyCode.Z) && m_isGrounded)
             {
                 m_velocity.y = m_jumpForce;
                 m_isGrounded = false;
