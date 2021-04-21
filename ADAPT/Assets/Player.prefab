@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 332044813836309290}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,16 +47,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fb0ab406b45c74ea026f86e8000d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_walkAcceleration: 5
-  m_maxWalkSpeed: 8
-  m_dashSpeed: 12
-  m_dashDuration: 0.3
-  m_jumpForce: 12
+  m_walkAcceleration: 8
+  m_maxWalkSpeed: 10
+  m_deceleration: 12
+  m_deadZone: 0.3
+  m_jumpForce: 8
   m_baseGravity: 0.6
-  m_jumpGravity: 0.2
+  m_jumpGravity: 0.3
   m_terminalVelocity: 15
-  m_deceleration: 0.5
-  m_deadZone: 0.1
+  m_baseAttackDamage: 0
+  m_attackCooldown: 0
+  m_baseHealth: 0
+  m_mutationThreshold: 0
+  m_mutationCap: 0
+  m_jumpHeightModifier: 0
+  m_healthModifier: 0
+  m_damageModifier: 0
+  m_dashSpeed: 20
+  m_dashDuration: 0.1
+  m_dashCooldown: 0
+  m_dashCooldownModifier: 0
 --- !u!70 &332044813836309291
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -66,7 +76,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 332044813836309289}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 553b8196ae9a03a469fd654ca9de5fa6, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -89,7 +99,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 553b8196ae9a03a469fd654ca9de5fa6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -107,7 +117,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d287e5f452679bd4193688cdc25cb3fc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

@@ -411,38 +411,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
-      propertyPath: m_dashSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
-        type: 3}
-      propertyPath: m_dashDuration
-      value: 0.1
+      propertyPath: m_walkAcceleration
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
       propertyPath: m_maxWalkSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
-        type: 3}
-      propertyPath: m_walkAcceleration
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
-      propertyPath: m_deceleration
-      value: 12
+      propertyPath: m_baseGravity
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
-      propertyPath: m_deadZone
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
-        type: 3}
-      propertyPath: m_jumpForce
-      value: 20
+      propertyPath: m_jumpGravity
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 332044813836309289, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}

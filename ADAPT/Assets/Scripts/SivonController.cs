@@ -7,18 +7,20 @@ public class SivonController : MonoBehaviour
 {
     private Animator m_sprite;
     private Rigidbody2D m_rigidBody;
-    private CapsuleCollider2D m_collider;
+    private CircleCollider2D m_clawsCollider;
+    private CapsuleCollider2D m_bodyCollider;
     private Vector3 m_velocity = Vector3.zero;
     private List<int> m_dNACount = new List<int>(4);
     private float m_facing = 1;
     private float m_currentDashCooldown;
     private bool m_isDead = false;
     private bool m_canJump = false;
-    private bool m_canDash = false;
+    private bool m_canDash = true;
     private bool m_isDashing = false;
     private bool m_isJumping = false;
     private bool m_isGrounded = false;
     private bool m_isAttacking = false;
+    private bool m_canMultiJump = true;
 
     public enum DNATypes { Alas, Armatus, Bellum, Spiculum }
 
@@ -85,19 +87,30 @@ public class SivonController : MonoBehaviour
 
     private void Awake()
     {
-        m_collider = GetComponent<CapsuleCollider2D>();
-        m_rigidBody = GetComponent<Rigidbody2D>();
         m_sprite = GetComponentInChildren<Animator>();
+        m_rigidBody = GetComponent<Rigidbody2D>();
+        m_clawsCollider = GetComponentInChildren<CircleCollider2D>();
+        m_bodyCollider = GetComponent<CapsuleCollider2D>();
         for (int i = 0; i < m_dNACount.Count; i++)
         {
             m_dNACount[i] = 0;
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+    }
+
     void Update()
     {
         Movement();
         UpdateAnimator();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 
     /*
@@ -116,31 +129,27 @@ public class SivonController : MonoBehaviour
         // Dash control
         if (Input.GetKeyDown(KeyCode.C) && m_canDash)
         {
-            m_isDashing = true;
             StartCoroutine(Dash());
         }
 
         if (!m_isDashing)
         {
-            Debug.DrawRay(transform.position - transform.up * m_collider.size.y / 2, -transform.up, Color.red, m_baseGravity * Time.fixedDeltaTime);
-            if (Physics2D.Raycast(transform.position - transform.up * m_collider.size.y / 2, -transform.up, m_baseGravity * Time.fixedDeltaTime))
+            if (Physics2D.Raycast(transform.position - transform.up * m_bodyCollider.size.y / 2, -transform.up, m_jumpGravity * Time.fixedDeltaTime))
             {
                 m_isGrounded = true;
+                m_isJumping = false;
+                m_velocity.y = 0;
             }
             else
             {
                 m_isGrounded = false;
             }
 
-            // Temporary for before coding multi-jump //
-            m_canJump = m_isGrounded;
-            ////////////////////////////////////////////
-
             // Handles Input for Horizontal Movement & Jump
 
-            if (Input.GetKeyDown(KeyCode.Z) && m_canJump)
+            if (Input.GetKeyDown(KeyCode.Z) && m_isGrounded)
             {
-                m_velocity.y += m_jumpForce;
+                m_velocity.y = m_jumpForce;
                 m_isGrounded = false;
                 m_isJumping = true;
             }
@@ -182,29 +191,11 @@ public class SivonController : MonoBehaviour
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
-
-            ApplyMovement();
         }
     }
 
     private void ApplyMovement()
     {
-
-        // This is separate from the rest of the movement code so that it can be used separately with the Dash coroutine
-
-        // Nullifies m_velocity when colliding with objects (stops player from sticking to walls, being able to jump around ceilings, etc.)
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right * Mathf.Sign(m_velocity.x) * m_collider.size.x / 2, transform.right, m_velocity.x * Time.fixedDeltaTime);
-        if (hit)
-        {
-            m_velocity.x = hit.distance;
-        }
-        hit = Physics2D.Raycast(transform.position + transform.up * Mathf.Sign(m_velocity.y) * m_collider.size.y / 2, transform.up, m_velocity.y * Time.fixedDeltaTime);
-        if (hit)
-        {
-            m_velocity.y = hit.distance;
-        }
-
-        // Applies m_velocity to Rigidbody velocity
         m_rigidBody.velocity = new Vector3(Mathf.Clamp(m_velocity.x, -m_terminalVelocity, m_terminalVelocity), Mathf.Clamp(m_velocity.y, -m_terminalVelocity, m_terminalVelocity), 0);
     }
 
@@ -212,9 +203,9 @@ public class SivonController : MonoBehaviour
     {
         // Sends values to animation controller
         m_sprite.SetFloat("verticalVelocity", m_velocity.y);
+        m_sprite.SetBool("isAttacking", m_isAttacking);
         m_sprite.SetBool("isGrounded", m_isGrounded);
         m_sprite.SetBool("isDashing", m_isDashing);
-        m_sprite.SetBool("isAttacking", m_isAttacking);
         m_sprite.SetBool("isJumping", m_isJumping);
         m_sprite.SetBool("isDead", m_isDead);
         if (m_deadZone < Mathf.Abs(m_velocity.x))
@@ -230,12 +221,12 @@ public class SivonController : MonoBehaviour
     IEnumerator Dash()
     {
         // Halts all other movement and dashes the player forward at a set speed for a set duration
+        m_isDashing = true;
         m_velocity.y = 0;
         float dashDir = m_facing;
         for (float i = 0; i < m_dashDuration; i += Time.deltaTime)
         {
             m_velocity.x += dashDir * (m_dashSpeed - i / m_dashDuration * m_dashSpeed);
-            ApplyMovement();
             yield return new WaitForEndOfFrame();
         }
         m_isDashing = false;
@@ -258,15 +249,31 @@ public class SivonController : MonoBehaviour
         {
             case DNATypes.Alas:
                 m_dNACount[0]++;
+                if (m_mutationThreshold <= m_dNACount[0])
+                {
+                    m_canMultiJump = true;
+                }
                 break;
             case DNATypes.Armatus:
-                m_dNACount[0]++;
+                m_dNACount[1]++;
+                if (m_mutationThreshold <= m_dNACount[1])
+                {
+                    
+                }
                 break;
             case DNATypes.Bellum:
-                m_dNACount[0]++;
+                m_dNACount[2]++;
+                if (m_mutationThreshold <= m_dNACount[2])
+                {
+                    
+                }
                 break;
             case DNATypes.Spiculum:
-                m_dNACount[0]++;
+                m_dNACount[3]++;
+                if (m_mutationThreshold <= m_dNACount[3])
+                {
+                    m_canDash = true;
+                }
                 break;
             default: break;
         }
