@@ -6,13 +6,15 @@ public class Vision : MonoBehaviour
 {
 
     public float timer;
+    public bool IsOn=false;
 
-    void OnTriggerStay2D(Collider2D other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
             timer = 0;
             SendMessageUpwards("RecieveVisual", true);
+            IsOn = true;
 
         }
     }
@@ -22,6 +24,7 @@ public class Vision : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             StartCoroutine(LoseTarget());
+            IsOn = false;
         }
     }
 

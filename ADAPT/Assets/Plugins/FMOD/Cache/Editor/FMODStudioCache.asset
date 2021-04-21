@@ -197,7 +197,7 @@ MonoBehaviour:
   Path: Assets/Audios/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637545707798992539
+  lastModified: 637545720859028560
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -239,7 +239,7 @@ MonoBehaviour:
   Path: Assets/Audios/Build/Desktop/Environment.bank
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 637545707798703315
+  lastModified: 637545720857263280
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -274,12 +274,13 @@ MonoBehaviour:
   - {fileID: 8836476890611045334}
   - {fileID: 2230812792992064831}
   - {fileID: -6097036586339013965}
+  - {fileID: 5772070806526090007}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4470006258331410011}
   StringsBanks:
   - {fileID: 4486309812079040241}
-  stringsBankWriteTime: 637545707799022462
+  stringsBankWriteTime: 637545720859058488
   cacheVersion: 6
 --- !u!114 &2230812792992064831
 MonoBehaviour:
@@ -365,11 +366,11 @@ MonoBehaviour:
   Path: Assets/Audios/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637545707799022462
+  lastModified: 637545720859058488
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1414
+    Value: 1458
   Exists: 1
 --- !u!114 &5100038162060747456
 MonoBehaviour:
@@ -415,6 +416,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1414
   Exists: 0
+--- !u!114 &5772070806526090007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Rocks/RockRock
+  m_EditorClassIdentifier: 
+  Path: event:/Rocks/RockRock
+  guid: cdeb528d565e8f44b9b64455c0bb3f9f
+  Banks:
+  - {fileID: -4470006258331410011}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4510
 --- !u!114 &7843088608895812891
 MonoBehaviour:
   m_ObjectHideFlags: 0
