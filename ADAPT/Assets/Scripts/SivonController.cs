@@ -7,20 +7,24 @@ public class SivonController : MonoBehaviour
 {
     private Animator m_sprite;
     private Rigidbody2D m_rigidBody;
+    private DealDamage m_damageScript;
     private CircleCollider2D m_clawsCollider;
     private CapsuleCollider2D m_bodyCollider;
     private Vector3 m_velocity = Vector3.zero;
     private List<int> m_dNACount = new List<int>(4);
     private float m_facing = 1;
     private float m_currentDashCooldown;
+    private float m_currentAttackCooldown;
     private bool m_isDead = false;
     private bool m_canJump = false;
-    private bool m_canDash = true;
+    private bool m_hasArmor = true; // set to false for final build
+    private bool m_hasClaws = true; // set to false for final build
+    private bool m_hasWings = true; // set to false for final build
+    private bool m_hasSpikes = true; // set to false for final build
     private bool m_isDashing = false;
     private bool m_isJumping = false;
     private bool m_isGrounded = false;
     private bool m_isAttacking = false;
-    private bool m_canMultiJump = true;
 
     public enum DNATypes { Alas, Armatus, Bellum, Spiculum }
 
@@ -29,28 +33,12 @@ public class SivonController : MonoBehaviour
     [SerializeField]
     private float m_walkAcceleration;
     [SerializeField]
-    private float m_maxWalkSpeed;
-    [SerializeField]
-    private float m_deceleration;
-    [SerializeField]
-    private float m_deadZone;
-    [SerializeField]
-    private float m_jumpForce;
-    [SerializeField]
-    private float m_baseGravity;
-    [SerializeField]
-    private float m_jumpGravity;
-    [SerializeField]
-    private float m_terminalVelocity;
+    private float m_maxWalkSpeed, m_deceleration, m_deadZone, m_jumpForce, m_baseGravity, m_jumpGravity, m_terminalVelocity;
 
     [Header("Combat")]
 
     [SerializeField]
-    private float m_baseAttackDamage;
-    [SerializeField]
-    private float m_attackCooldown;
-    [SerializeField]
-    private float m_baseHealth;
+    private float m_attackDamage, m_attackDuration, m_attackCooldown, m_health;
 
     [Header("Progression")]
 
@@ -63,6 +51,8 @@ public class SivonController : MonoBehaviour
 
     [SerializeField]
     private float m_jumpHeightModifier;
+    [SerializeField]
+    private int m_extraJumps;
 
     [Header("Armor")]
 
@@ -79,11 +69,7 @@ public class SivonController : MonoBehaviour
     [SerializeField]
     private float m_dashSpeed;
     [SerializeField]
-    private float m_dashDuration;
-    [SerializeField]
-    private float m_dashCooldown;
-    [SerializeField]
-    private float m_dashCooldownModifier;
+    private float m_dashDuration, m_dashCooldown, m_dashCooldownModifier;
 
     private void Awake()
     {
@@ -91,6 +77,9 @@ public class SivonController : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_clawsCollider = GetComponentInChildren<CircleCollider2D>();
         m_bodyCollider = GetComponent<CapsuleCollider2D>();
+        m_damageScript = GetComponentInChildren<DealDamage>();
+        m_damageScript.damage = m_attackDamage;
+        m_damageScript.gameObject.SetActive(false);
         for (int i = 0; i < m_dNACount.Count; i++)
         {
             m_dNACount[i] = 0;
@@ -106,11 +95,14 @@ public class SivonController : MonoBehaviour
     {
         Movement();
         UpdateAnimator();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
+        if (0 < m_currentDashCooldown)
+        {
+            m_currentDashCooldown = Mathf.Clamp(m_currentDashCooldown - Time.deltaTime, 0, m_dashCooldown);
+        }
+        if (0 < m_currentAttackCooldown)
+        {
+            m_currentAttackCooldown = Mathf.Clamp(m_currentAttackCooldown - Time.deltaTime, 0, m_attackCooldown);
+        }
     }
 
     /*
@@ -126,8 +118,14 @@ public class SivonController : MonoBehaviour
 
     private void Movement()
     {
+        // Attack Control
+        if (Input.GetKeyDown(KeyCode.X) && m_currentAttackCooldown == 0)
+        {
+            StartCoroutine(Attack());
+        }
+
         // Dash control
-        if (Input.GetKeyDown(KeyCode.C) && m_canDash)
+        if (Input.GetKeyDown(KeyCode.C) && m_hasSpikes && m_currentDashCooldown == 0)
         {
             StartCoroutine(Dash());
         }
@@ -143,20 +141,30 @@ public class SivonController : MonoBehaviour
             else
             {
                 m_isGrounded = false;
+                if (m_currentDashCooldown <= 0)
+                {
+                    m_currentDashCooldown = Mathf.Clamp(m_currentDashCooldown - Time.deltaTime, 0, m_dashCooldown);
+                }
+                if (m_currentAttackCooldown <= 0)
+                {
+                    m_currentAttackCooldown = Mathf.Clamp(m_currentAttackCooldown - Time.deltaTime, 0, m_attackCooldown);
+                }
             }
 
-            // Handles Input for Horizontal Movement & Jump
+            // Horizontal Movement & Jump
 
-            if (Input.GetKeyDown(KeyCode.Z) && m_isGrounded)
+            if (Input.GetKeyDown(KeyCode.Z) && m_canJump)
             {
                 m_velocity.y = m_jumpForce;
                 m_isGrounded = false;
                 m_isJumping = true;
             }
+
             if (Input.GetKeyUp(KeyCode.Z))
             {
                 m_isJumping = false;
             }
+
             if (!m_isDashing && !m_isGrounded)
             {
                 if (m_isJumping)
@@ -194,6 +202,17 @@ public class SivonController : MonoBehaviour
         }
     }
 
+    public void HitTarget(float damage, Vector2 direction, float knockbackFactor)
+    {
+        m_rigidBody.AddForce((direction - m_rigidBody.position).normalized, ForceMode2D.Impulse);
+        m_health -= damage;
+
+        if (m_health <= 0)
+        {
+            m_isDead = true;
+        }
+    }
+
     private void ApplyMovement()
     {
         m_rigidBody.velocity = new Vector3(Mathf.Clamp(m_velocity.x, -m_terminalVelocity, m_terminalVelocity), Mathf.Clamp(m_velocity.y, -m_terminalVelocity, m_terminalVelocity), 0);
@@ -218,6 +237,18 @@ public class SivonController : MonoBehaviour
         }
     }
 
+    IEnumerator Attack()
+    {
+        m_isAttacking = true;
+        m_damageScript.gameObject.SetActive(true);
+        for (float i = 0; i < m_attackDuration; i += Time.deltaTime)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        m_damageScript.gameObject.SetActive(false);
+        m_isAttacking = false;
+    }
+
     IEnumerator Dash()
     {
         // Halts all other movement and dashes the player forward at a set speed for a set duration
@@ -229,6 +260,7 @@ public class SivonController : MonoBehaviour
             m_velocity.x += dashDir * (m_dashSpeed - i / m_dashDuration * m_dashSpeed);
             yield return new WaitForEndOfFrame();
         }
+        m_currentDashCooldown = m_dashCooldown;
         m_isDashing = false;
     }
 
@@ -249,30 +281,35 @@ public class SivonController : MonoBehaviour
         {
             case DNATypes.Alas:
                 m_dNACount[0]++;
-                if (m_mutationThreshold <= m_dNACount[0])
+                if (m_mutationThreshold <= m_dNACount[0] && m_dNACount[0] <= m_mutationCap)
                 {
-                    m_canMultiJump = true;
+                    m_hasWings = true;
+                    m_jumpForce += m_jumpHeightModifier;
                 }
                 break;
             case DNATypes.Armatus:
                 m_dNACount[1]++;
-                if (m_mutationThreshold <= m_dNACount[1])
+                if (m_mutationThreshold <= m_dNACount[1] && m_dNACount[1] <= m_mutationCap)
                 {
-                    
+                    m_hasArmor = true;
+                    m_health += m_healthModifier;
                 }
                 break;
             case DNATypes.Bellum:
                 m_dNACount[2]++;
-                if (m_mutationThreshold <= m_dNACount[2])
+                if (m_mutationThreshold <= m_dNACount[2] && m_dNACount[2] <= m_mutationCap)
                 {
-                    
+                    m_hasClaws = true;
+                    m_attackDamage += m_damageModifier;
+                    m_damageScript.GetComponent<DealDamage>().damage = m_attackDamage;
                 }
                 break;
             case DNATypes.Spiculum:
                 m_dNACount[3]++;
-                if (m_mutationThreshold <= m_dNACount[3])
+                if (m_mutationThreshold <= m_dNACount[3] && m_dNACount[3] <= m_mutationCap)
                 {
-                    m_canDash = true;
+                    m_hasSpikes = true;
+                    m_dashCooldown -= m_mutationThreshold;
                 }
                 break;
             default: break;

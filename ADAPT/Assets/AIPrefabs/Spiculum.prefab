@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3719200950179960894}
   m_Layer: 0
   m_Name: Spiculum
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   graphics: {fileID: 3719200951397038086}
-  vision: {fileID: 3719200951825189149}
   health: 300
   speed: 75
   patrolRange: 2
@@ -220,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+  IsOn: 0
 --- !u!61 &3719200951825189148
 BoxCollider2D:
   m_ObjectHideFlags: 0

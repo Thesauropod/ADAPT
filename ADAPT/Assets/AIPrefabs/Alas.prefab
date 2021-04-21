@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6731211877973682185}
   m_Layer: 0
   m_Name: Alas
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   graphics: {fileID: 6731211877899581312}
-  vision: {fileID: 6731211878850213304}
   health: 5
   speed: 250
   patrolRange: 2
@@ -220,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+  IsOn: 0
 --- !u!61 &6731211878850213307
 BoxCollider2D:
   m_ObjectHideFlags: 0
