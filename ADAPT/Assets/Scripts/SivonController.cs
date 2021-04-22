@@ -13,6 +13,7 @@ public class SivonController : MonoBehaviour
     private Vector3 m_velocity = Vector3.zero;
     private List<int> m_dNACount = new List<int>(4);
     private float m_facing = 1;
+    private float m_currentJumps;
     private float m_currentDashCooldown;
     private float m_currentAttackCooldown;
     private bool m_isDead = false;
@@ -70,6 +71,13 @@ public class SivonController : MonoBehaviour
     private float m_dashSpeed;
     [SerializeField]
     private float m_dashDuration, m_dashCooldown, m_dashCooldownModifier;
+
+    [Header("Adaptation Sprites")]
+
+    [SerializeField]
+    private GameObject[] m_wings;
+    [SerializeField] private GameObject[] m_spikes, m_claws, m_armor;
+
 
     private void Awake()
     {
@@ -134,6 +142,7 @@ public class SivonController : MonoBehaviour
         {
             if (Physics2D.Raycast(transform.position - transform.up * m_bodyCollider.size.y / 2, -transform.up, m_jumpGravity * Time.fixedDeltaTime))
             {
+                m_currentJumps = m_extraJumps;
                 m_isGrounded = true;
                 m_isJumping = false;
                 m_velocity.y = 0;
@@ -145,8 +154,9 @@ public class SivonController : MonoBehaviour
 
             // Horizontal Movement & Jump
 
-            if (Input.GetKeyDown(KeyCode.Z) && m_isGrounded)
+            if (Input.GetKeyDown(KeyCode.Z) && (m_isGrounded || (0 < m_currentJumps && m_hasWings)))
             {
+                if (!m_isGrounded) { m_currentJumps--; }
                 m_velocity.y = m_jumpForce;
                 m_isGrounded = false;
                 m_isJumping = true;
@@ -275,6 +285,10 @@ public class SivonController : MonoBehaviour
                 m_dNACount[0]++;
                 if (m_mutationThreshold <= m_dNACount[0] && m_dNACount[0] <= m_mutationCap)
                 {
+                    foreach (GameObject sprite in m_wings)
+                    {
+                        sprite.SetActive(true);
+                    }
                     m_hasWings = true;
                     m_jumpForce += m_jumpHeightModifier;
                 }
@@ -291,6 +305,10 @@ public class SivonController : MonoBehaviour
                 m_dNACount[2]++;
                 if (m_mutationThreshold <= m_dNACount[2] && m_dNACount[2] <= m_mutationCap)
                 {
+                    foreach (GameObject sprite in m_claws)
+                    {
+                        sprite.SetActive(true);
+                    }
                     m_hasClaws = true;
                     m_attackDamage += m_damageModifier;
                     m_damageScript.GetComponent<DealDamage>().damage = m_attackDamage;
@@ -300,6 +318,10 @@ public class SivonController : MonoBehaviour
                 m_dNACount[3]++;
                 if (m_mutationThreshold <= m_dNACount[3] && m_dNACount[3] <= m_mutationCap)
                 {
+                    foreach (GameObject sprite in m_spikes)
+                    {
+                        sprite.SetActive(true);
+                    }
                     m_hasSpikes = true;
                     m_dashCooldown -= m_mutationThreshold;
                 }
