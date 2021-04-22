@@ -1412,7 +1412,7 @@ PrefabInstance:
     - target: {fileID: 332044813836309295, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9
+      value: 193.3
       objectReference: {fileID: 0}
     - target: {fileID: 332044813836309295, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
@@ -4777,7 +4777,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 929583769}
+  - component: {fileID: 929583771}
   - component: {fileID: 929583768}
+  - component: {fileID: 929583770}
   m_Layer: 0
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -4849,6 +4851,44 @@ Transform:
   m_Father: {fileID: 238211909}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &929583770
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929583767}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -11.3, y: -10.41}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.23, y: 10.8}
+  m_EdgeRadius: 0
+--- !u!114 &929583771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929583767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f4f799aa3626541bc35b1d133e07cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &939100270
 GameObject:
   m_ObjectHideFlags: 0
