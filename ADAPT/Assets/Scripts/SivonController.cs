@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
 
 public class SivonController : MonoBehaviour
 {
@@ -123,6 +124,11 @@ public class SivonController : MonoBehaviour
             {
                 m_currentAttackCooldown = Mathf.Clamp(m_currentAttackCooldown - Time.deltaTime, 0, m_attackCooldown);
             }
+        }
+        else
+        {
+            m_velocity = Vector3.zero;
+            m_rigidBody.velocity = Vector3.zero;
         }
         
         UpdateAnimator();
@@ -299,6 +305,7 @@ public class SivonController : MonoBehaviour
     {
         m_isDead = true;
         yield return new WaitUntil(() => CheckAnimation() == true);
+        SceneManager.LoadScene(1);
     }
 
     /*
