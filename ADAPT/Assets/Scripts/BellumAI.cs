@@ -75,7 +75,7 @@ public class BellumAI : MonoBehaviour
 
                 if (!dNASent)
                 {
-                    target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Armatus);
+                    target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Bellum);
                     dNASent = true;
                 }
                 StopAllCoroutines();

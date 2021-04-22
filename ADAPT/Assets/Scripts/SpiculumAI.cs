@@ -62,7 +62,7 @@ public class SpiculumAI : MonoBehaviour
                 anim.SetBool("isDead", true);
                 if (!dNASent)
                 {
-                    target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Armatus);
+                    target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Spiculum);
                     dNASent = true;
                 }
                 //play animation
