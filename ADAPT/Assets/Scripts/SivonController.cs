@@ -18,14 +18,15 @@ public class SivonController : MonoBehaviour
     private float m_currentAttackCooldown;
     private bool m_isDead = false;
     private bool m_canJump = false;
-    private bool m_hasArmor = true; // set to false for final build
-    private bool m_hasClaws = true; // set to false for final build
-    private bool m_hasWings = true; // set to false for final build
-    private bool m_hasSpikes = true; // set to false for final build
+    private bool m_hasArmor = false;
+    private bool m_hasClaws = false;
+    private bool m_hasWings = false;
+    private bool m_hasSpikes = false;
     private bool m_isDashing = false;
     private bool m_isJumping = false;
     private bool m_isGrounded = false;
     private bool m_isAttacking = false;
+    private LayerMask environment;
 
     public enum DNATypes { Alas, Armatus, Bellum, Spiculum }
 
@@ -39,7 +40,9 @@ public class SivonController : MonoBehaviour
     [Header("Combat")]
 
     [SerializeField]
-    private float m_attackDamage, m_attackDuration, m_attackCooldown, m_health;
+    private float m_attackDamage;
+    [SerializeField]
+    private float m_attackDuration, m_attackCooldown, m_health;
 
     [Header("Progression")]
 
@@ -78,9 +81,13 @@ public class SivonController : MonoBehaviour
     private GameObject[] m_wings;
     [SerializeField] private GameObject[] m_spikes, m_claws, m_armor;
 
+    [Header("Testing")]
+    [SerializeField] private bool m_enableAllMutations;
+
 
     private void Awake()
     {
+        environment = LayerMask.GetMask("Environment");
         m_sprite = GetComponentInChildren<Animator>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_clawsCollider = GetComponentInChildren<CircleCollider2D>();
@@ -92,6 +99,14 @@ public class SivonController : MonoBehaviour
         {
             m_dNACount[i] = 0;
         }
+        if (m_enableAllMutations)
+        {
+            m_mutationThreshold = 0;
+            ConsumeDNA(DNATypes.Alas);
+            ConsumeDNA(DNATypes.Armatus);
+            ConsumeDNA(DNATypes.Bellum);
+            ConsumeDNA(DNATypes.Spiculum);
+        }
     }
 
     private void FixedUpdate()
@@ -101,16 +116,20 @@ public class SivonController : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        if (!m_isDead)
+        {
+            Movement();
+            if (0 < m_currentDashCooldown)
+            {
+                m_currentDashCooldown = Mathf.Clamp(m_currentDashCooldown - Time.deltaTime, 0, m_dashCooldown);
+            }
+            if (0 < m_currentAttackCooldown)
+            {
+                m_currentAttackCooldown = Mathf.Clamp(m_currentAttackCooldown - Time.deltaTime, 0, m_attackCooldown);
+            }
+        }
+        
         UpdateAnimator();
-        if (0 < m_currentDashCooldown)
-        {
-            m_currentDashCooldown = Mathf.Clamp(m_currentDashCooldown - Time.deltaTime, 0, m_dashCooldown);
-        }
-        if (0 < m_currentAttackCooldown)
-        {
-            m_currentAttackCooldown = Mathf.Clamp(m_currentAttackCooldown - Time.deltaTime, 0, m_attackCooldown);
-        }
     }
 
     /*
@@ -140,21 +159,30 @@ public class SivonController : MonoBehaviour
 
         if (!m_isDashing)
         {
-            if (Physics2D.Raycast(transform.position - transform.up * m_bodyCollider.size.y / 2, -transform.up, m_jumpGravity * Time.fixedDeltaTime))
+            Debug.DrawRay(transform.position - transform.up * m_bodyCollider.size.y * transform.localScale.y * 0.5f, -transform.up, Color.red, m_jumpGravity * Time.fixedDeltaTime);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position - transform.up * m_bodyCollider.size.y * transform.localScale.y * 0.501f , -transform.up, m_jumpGravity * Time.fixedDeltaTime);
+            if (hit)
             {
                 m_currentJumps = m_extraJumps;
                 m_isGrounded = true;
+                m_canJump = true;
                 m_isJumping = false;
-                m_velocity.y = 0;
+                m_velocity.y = -hit.distance;
             }
             else
             {
                 m_isGrounded = false;
+                m_canJump = false;
             }
 
             // Horizontal Movement & Jump
 
-            if (Input.GetKeyDown(KeyCode.Z) && (m_isGrounded || (0 < m_currentJumps && m_hasWings)))
+            if (0 < m_currentJumps && m_hasWings)
+            {
+                m_canJump = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z) && m_canJump)
             {
                 if (!m_isGrounded) { m_currentJumps--; }
                 m_velocity.y = m_jumpForce;
@@ -212,6 +240,7 @@ public class SivonController : MonoBehaviour
         if (m_health <= 0)
         {
             m_isDead = true;
+            StartCoroutine(Die());
         }
     }
 
@@ -239,6 +268,11 @@ public class SivonController : MonoBehaviour
         }
     }
 
+    private bool CheckAnimation()
+    {
+        return m_sprite.GetCurrentAnimatorStateInfo(0).normalizedTime % 1.0f < 1.0f;
+    }
+
     IEnumerator Attack()
     {
         m_isAttacking = true;
@@ -264,6 +298,12 @@ public class SivonController : MonoBehaviour
         }
         m_currentDashCooldown = m_dashCooldown;
         m_isDashing = false;
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitUntil(() => CheckAnimation() == true);
+        Destroy(this.gameObject);
     }
 
     /*

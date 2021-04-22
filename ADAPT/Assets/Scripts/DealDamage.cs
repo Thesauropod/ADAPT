@@ -13,7 +13,11 @@ public class DealDamage : MonoBehaviour
         }
         if (collision.gameObject.tag == "enemy")
         {
-
+            collision.gameObject.SendMessage("HitTarget", damage);
+        }
+        if (collision.gameObject.tag == "breakable")
+        {
+            collision.gameObject.SendMessage("Broken");
         }
     }
 
