@@ -9,11 +9,12 @@ public class BellumAI : MonoBehaviour
 
     Rigidbody2D rb2D;
     Animator anim;
+    CapsuleCollider2D cc2D;
     public GameObject graphics;
 
     float timer;
     [SerializeField] private float health = 5, speed = 250f, patrolRange = 2f;
-    public bool canCharge = false, chargeTriggered = false, jumpTriggered = false, patrolling = false;
+    public bool canCharge = false, chargeTriggered = false, jumpTriggered = false, patrolling = false, dead = false;
     public bool playerDetected = false, activeDamage = true;
     private bool dNASent = false;
     public Transform target;
@@ -26,15 +27,16 @@ public class BellumAI : MonoBehaviour
 
         anim = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
-
+        cc2D = GetComponent<CapsuleCollider2D>();
     }
 
     void Update()
     {
-        FlipSprite();
+        
         switch (currentState)
         {
             case State.Patrol:
+                FlipSprite();
                 anim.SetBool("isAttacking", false);
                 if (!patrolling)
                 {
@@ -50,8 +52,9 @@ public class BellumAI : MonoBehaviour
                 //Move back and forth
                 break;
             case State.Attack:
+                FlipSprite();
                 anim.SetBool("isWalking", false);
-                anim.SetBool("isAttacking", true);
+               
                 if (!playerDetected && health > 0)
                 {
                     currentState = State.Patrol;
@@ -68,6 +71,7 @@ public class BellumAI : MonoBehaviour
                 break;
             case State.Dead:
                 patrolling = false;
+                
                 //play animation
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttacking", false);
@@ -78,8 +82,13 @@ public class BellumAI : MonoBehaviour
                     target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Bellum);
                     dNASent = true;
                 }
-                StopAllCoroutines();
-                StartCoroutine(KillUnit());
+                if (!dead)
+                {
+                    StartCoroutine(KillUnit());
+                    dead = true;
+                }
+                
+                
                 break;
         }
 
@@ -106,12 +115,17 @@ public class BellumAI : MonoBehaviour
                 {
                     StartCoroutine(EndChargeDelay());
                     Vector2 force = GetDirectionToTarget(target.position) * (speed * 2) * Time.deltaTime;
+
                     if (rb2D.velocity.x <= 0.05f || rb2D.velocity.x >= -0.05f && !jumpTriggered)
                     {
                         StartCoroutine(AddJumpForce());
 
                     }
-                    rb2D.AddForce(force);
+                    anim.SetBool("isAttacking", true);
+                    rb2D.AddForce(force, ForceMode2D.Impulse);
+                }
+                else {
+                    anim.SetBool("isAttacking", false);
                 }
                 break;
 
@@ -123,7 +137,7 @@ public class BellumAI : MonoBehaviour
 
     public void HitTarget(float damage)
     {
-        rb2D.AddForce((GetDirectionToTarget(target.position).normalized * (damage * 10)), ForceMode2D.Impulse); health -= damage;
+        rb2D.AddForce(-(GetDirectionToTarget(target.position).normalized * (damage * 10)), ForceMode2D.Impulse); health -= damage;
 
         if (health <= 0)
         {
@@ -149,12 +163,12 @@ public class BellumAI : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (rb2D.velocity.x > 0f)
+        if (rb2D.velocity.x > 0.05f)
         {
 
             graphics.transform.localScale = new Vector3(-.5f, .5f, 1);
         }
-        else if (rb2D.velocity.x < 0f)
+        else if (rb2D.velocity.x < 0.05f)
         {
 
             graphics.transform.localScale = new Vector3(.5f, .5f, 1);
@@ -218,7 +232,7 @@ public class BellumAI : MonoBehaviour
         yield return new WaitForSeconds(5f);
         if (currentState == State.Patrol)
         {
-            Debug.Log("Patrolled once");
+
             patrolTarget = new Vector3(Random.Range(this.transform.position.x - patrolRange, this.transform.position.x + patrolRange), this.transform.position.y, this.transform.position.z);
             Vector2 force = GetDirectionToTarget(patrolTarget) * speed * Time.deltaTime;
             rb2D.AddForce(force, ForceMode2D.Impulse);
@@ -228,8 +242,10 @@ public class BellumAI : MonoBehaviour
 
     IEnumerator KillUnit()
     {
-        yield return new WaitUntil(() => CheckAnimation() == true);
+        cc2D.enabled = false;
+        yield return new WaitForSeconds(3f);
         target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Bellum);
+        Debug.Log("Dead");
         Destroy(this.gameObject);
 
     }
