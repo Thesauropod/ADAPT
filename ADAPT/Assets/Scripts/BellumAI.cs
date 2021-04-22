@@ -229,6 +229,7 @@ public class BellumAI : MonoBehaviour
     IEnumerator KillUnit()
     {
         yield return new WaitUntil(() => CheckAnimation() == true);
+        target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Bellum);
         Destroy(this.gameObject);
 
     }

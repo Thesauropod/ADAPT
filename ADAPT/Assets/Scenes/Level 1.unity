@@ -1399,6 +1399,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 332044813836309284, guid: 60cbb8e13e1417b4e966009340acffc5,
+        type: 3}
+      propertyPath: m_mutationThreshold
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 332044813836309289, guid: 60cbb8e13e1417b4e966009340acffc5,
         type: 3}
       propertyPath: m_Name

@@ -11,7 +11,7 @@ public class SivonController : MonoBehaviour
     private CircleCollider2D m_clawsCollider;
     private CapsuleCollider2D m_bodyCollider;
     private Vector3 m_velocity = Vector3.zero;
-    private List<int> m_dNACount = new List<int>(4);
+    private int[] m_dNACount = new int[4] { 0, 0, 0, 0 };
     private float m_facing = 1;
     private float m_currentJumps;
     private float m_currentDashCooldown;
@@ -95,10 +95,6 @@ public class SivonController : MonoBehaviour
         m_damageScript = GetComponentInChildren<DealDamage>();
         m_damageScript.damage = m_attackDamage;
         m_damageScript.gameObject.SetActive(false);
-        for (int i = 0; i < m_dNACount.Count; i++)
-        {
-            m_dNACount[i] = 0;
-        }
         if (m_enableAllMutations)
         {
             m_mutationThreshold = 0;
@@ -239,7 +235,6 @@ public class SivonController : MonoBehaviour
 
         if (m_health <= 0)
         {
-            m_isDead = true;
             StartCoroutine(Die());
         }
     }
@@ -302,8 +297,8 @@ public class SivonController : MonoBehaviour
 
     IEnumerator Die()
     {
+        m_isDead = true;
         yield return new WaitUntil(() => CheckAnimation() == true);
-        Destroy(this.gameObject);
     }
 
     /*

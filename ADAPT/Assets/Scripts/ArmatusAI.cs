@@ -190,6 +190,7 @@ public class ArmatusAI : MonoBehaviour
     IEnumerator KillUnit()
     {
         yield return new WaitUntil(() => CheckAnimation() == true);
+        target.gameObject.GetComponent<SivonController>().ConsumeDNA(SivonController.DNATypes.Armatus);
         Destroy(this.gameObject);
 
     }
